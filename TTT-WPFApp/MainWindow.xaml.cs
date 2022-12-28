@@ -63,7 +63,7 @@ namespace TTT_WPFApp
 
         private void UpdateButtons()
         {
-            string[] flat = FlattenGrid(myGame.grid);
+            string[] flat = FlattenGrid(myGame.gameboard.grid);
             for (int i = 0; i < 9; i++)
             {
                 buttons[i].Content = flat[i];
@@ -108,7 +108,7 @@ namespace TTT_WPFApp
         {
             if (GetButtonText(i) == "." && !myGame.GameOver())
             {
-                myGame.PlaceMove(i / 3, i % 3);
+                myGame.AttemptMove(i / 3, i % 3);
                 UpdateButtons();
             }
         }

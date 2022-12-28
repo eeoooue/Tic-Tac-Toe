@@ -11,11 +11,11 @@ namespace TTT_ConsoleApp
 
             while (!myGame.GameOver())
             {
-                DisplayGrid(myGame.grid);
+                DisplayGrid(myGame.gameboard.grid);
                 PlayerMove(ref myGame);
             }
 
-            DisplayGrid(myGame.grid);
+            DisplayGrid(myGame.gameboard.grid);
 
             if (myGame.HasWinner())
             {
@@ -41,19 +41,14 @@ namespace TTT_ConsoleApp
                     int i = int.Parse(moves[0]);
                     int j = int.Parse(moves[1]);
 
-                    if (myGame.CanMove(i, j))
-                    {
-                        myGame.PlaceMove(i, j);
-                        return;
-                    }
+                    myGame.AttemptMove(i, j);
+                    return;
                 }
                 catch
                 {
-
+                    SayInColour($"'{playerInput}' ", ConsoleColor.Cyan);
+                    Console.WriteLine($"couldn't be interpretted as a valid move");
                 }
-
-                SayInColour($"'{playerInput}' ", ConsoleColor.Cyan);
-                Console.WriteLine($"couldn't be interpretted as a valid move");
             }
         }
 

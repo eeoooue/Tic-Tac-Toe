@@ -1,14 +1,13 @@
 ﻿
+using TTT_Library;
 
-using TicTacToeLibrary;
-
-namespace TicTacToe
+namespace TTT_ConsoleApp
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            Game myGame = new Game();
+            TicTacToeGame myGame = new TicTacToeGame();
 
             while (!myGame.GameOver())
             {
@@ -25,7 +24,7 @@ namespace TicTacToe
             Console.WriteLine($"The game is over, thanks for playing!");
         }
 
-        static void PlayerMove(ref Game myGame)
+        static void PlayerMove(ref TicTacToeGame myGame)
         {
             int activePlayer = (myGame.moves % 2) + 1;
             ConsoleColor playerColour = (activePlayer == 1) ? ConsoleColor.Red : ConsoleColor.Yellow;
@@ -61,9 +60,9 @@ namespace TicTacToe
         static void DisplayGrid(in char[,] grid)
         {
             Console.Clear();
-            for(int i=0; i<3; i++)
+            for (int i = 0; i < 3; i++)
             {
-                for(int j=0; j<3; j++)
+                for (int j = 0; j < 3; j++)
                 {
                     WriteChar(grid[i, j]);
                 }
@@ -71,9 +70,9 @@ namespace TicTacToe
             }
         }
 
-        static void CongratulateWinner(Game myGame)
+        static void CongratulateWinner(TicTacToeGame myGame)
         {
-            int winner = ((myGame.moves-1) % 2) + 1;
+            int winner = ((myGame.moves - 1) % 2) + 1;
             ConsoleColor colour = (winner == 1) ? ConsoleColor.Red : ConsoleColor.Yellow;
             SayInColour($"Player {winner} ", ConsoleColor.Red);
             Console.WriteLine("wins!!");
@@ -101,7 +100,5 @@ namespace TicTacToe
                 SayInColour("#", ConsoleColor.Gray);
             }
         }
-
-
     }
 }

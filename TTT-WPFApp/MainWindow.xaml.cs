@@ -12,23 +12,23 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using TicTacToeLibrary;
+using TTT_Library;
 
-namespace TicTacToeWPFUI
+namespace TTT_WPFApp
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
-        public Game myGame;
+        public TicTacToeGame myGame;
         public Button[] buttons;
 
         public MainWindow()
         {
             InitializeComponent();
 
-            myGame = new Game();
+            myGame = new TicTacToeGame();
             buttons = new Button[9];
 
             CreateButtons();
@@ -38,9 +38,9 @@ namespace TicTacToeWPFUI
         private void CreateButtons()
         {
             int b = 0;
-            for(int i=0; i<3; i++)
+            for (int i = 0; i < 3; i++)
             {
-                for(int j=0; j<3; j++)
+                for (int j = 0; j < 3; j++)
                 {
                     Button button = new Button()
                     {
@@ -50,7 +50,7 @@ namespace TicTacToeWPFUI
                         FontSize = 36,
                         Foreground = Brushes.White,
                     };
-                    
+
                     GameBoard.Children.Add(button);
                     Grid.SetRow(button, i);
                     Grid.SetColumn(button, j);
@@ -63,15 +63,12 @@ namespace TicTacToeWPFUI
 
         private void UpdateButtons()
         {
-
             string[] flat = FlattenGrid(myGame.grid);
-
-            for(int i=0; i<9; i++)
+            for (int i = 0; i < 9; i++)
             {
                 buttons[i].Content = flat[i];
                 buttons[i].Background = GetBrushColour(flat[i]);
             }
-
         }
 
         private Brush GetBrushColour(string text)
@@ -85,7 +82,7 @@ namespace TicTacToeWPFUI
                 default:
                     return Brushes.White;
             }
-        } 
+        }
 
         private string[] FlattenGrid(char[,] grid)
         {
@@ -118,13 +115,13 @@ namespace TicTacToeWPFUI
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            for(int i=0; i<9; i++)
+            for (int i = 0; i < 9; i++)
             {
-                if(sender == buttons[i])
+                if (sender == buttons[i])
                 {
                     ButtonClicked(i);
                 }
             }
-        }        
+        }
     }
 }

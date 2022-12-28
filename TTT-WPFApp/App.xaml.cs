@@ -6,7 +6,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace TicTacToeWPFUI
+namespace TTT_WPFApp
 {
     /// <summary>
     /// Interaction logic for App.xaml

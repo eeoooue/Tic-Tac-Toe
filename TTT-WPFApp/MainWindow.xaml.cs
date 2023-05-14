@@ -22,32 +22,24 @@ namespace TTT_WPFApp
     public partial class MainWindow : Window
     {
         public TicTacToeGame _myGame;
-        public Button[] _buttons;
 
         public MainWindow()
         {
             InitializeComponent();
-
             _myGame = new TicTacToeGame();
-            _buttons = new Button[9];
-
             CreateButtons();
         }
 
         private void CreateButtons()
         {
-            int b = 0;
             for (int i = 0; i < 3; i++)
             {
                 for (int j = 0; j < 3; j++)
                 {
-                    Button button = new GameTile(_myGame, i, j);
-
-                    GameBoard.Children.Add(button);
-                    Grid.SetRow(button, i);
-                    Grid.SetColumn(button, j);
-
-                    _buttons[b++] = button;
+                    GameTile tile = new(_myGame, i, j);
+                    GameBoard.Children.Add(tile);
+                    Grid.SetRow(tile, i);
+                    Grid.SetColumn(tile, j);
                 }
             }
         }

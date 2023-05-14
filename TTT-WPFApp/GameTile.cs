@@ -4,6 +4,7 @@ using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using TTT_Library;
@@ -39,10 +40,10 @@ namespace TTT_WPFApp
         public void UpdateMe()
         {
             Content = Text;
-            Background = GetBrushColour(Text);
+            Background = GetBackgroundColour(Text);
         }
 
-        private Brush GetBrushColour(string text)
+        private Brush GetBackgroundColour(string text)
         {
             switch (text)
             {

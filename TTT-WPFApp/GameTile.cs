@@ -13,43 +13,38 @@ namespace TTT_WPFApp
 {
     internal class GameTile : Button
     {
-        private TicTacToeGame _myGame;
-        public int Row { get; private set; }
-        public int Column { get; private set; }
-        public string Text { get { return _myGame.GetCellText(Row, Column); } }
+        private BoardTile _boardTile;
 
-        public GameTile(TicTacToeGame myGame, int i, int j)
+        public GameTile(BoardTile original)
         {
-            _myGame = myGame;
             Width = 80;
             Height = 80;
-            FontSize = 36;
+            FontSize = 42;
             Foreground = Brushes.White;
 
-            Row = i;
-            Column = j;
+            _boardTile = original;
             UpdateMe();
         }
 
         protected override void OnClick()
         {
-            _myGame.AttemptMove(Row, Column);
+            _boardTile.Click();
             UpdateMe();
         }
 
         public void UpdateMe()
         {
-            Content = Text;
-            Background = GetBackgroundColour(Text);
+            Content = _boardTile.Character.ToString();
+            Background = GetBackgroundColour();
         }
 
-        private Brush GetBackgroundColour(string text)
+        private Brush GetBackgroundColour()
         {
-            switch (text)
+            switch (_boardTile.Character)
             {
-                case "X":
+                case 'X':
                     return Brushes.Red;
-                case "O":
+                case 'O':
                     return Brushes.Blue;
                 default:
                     return Brushes.White;

@@ -32,15 +32,12 @@ namespace TTT_WPFApp
 
         private void CreateButtons()
         {
-            for (int i = 0; i < 3; i++)
+            foreach(BoardTile boardTile in _myGame.Tiles)
             {
-                for (int j = 0; j < 3; j++)
-                {
-                    GameTile tile = new(_myGame, i, j);
-                    GameBoard.Children.Add(tile);
-                    Grid.SetRow(tile, i);
-                    Grid.SetColumn(tile, j);
-                }
+                GameTile tile = new(boardTile);
+                GameBoard.Children.Add(tile);
+                Grid.SetRow(tile, boardTile.Row);
+                Grid.SetColumn(tile, boardTile.Column);
             }
         }
     }

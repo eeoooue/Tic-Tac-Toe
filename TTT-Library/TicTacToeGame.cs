@@ -18,11 +18,16 @@ namespace TTT_Library
 
         public void AttemptMove(int i, int j)
         {
-            if (gameboard.CanMove(i, j))
+            if (gameboard.CanMove(i, j) && !GameOver())
             {
                 char stone = (moves++ % 2 == 0) ? 'X' : 'O';
                 gameboard.PlaceMove(i, j, stone);
             }
+        }
+
+        public string GetCellText(int i, int j)
+        {
+            return gameboard.grid[i, j].ToString();
         }
 
         public bool HasWinner()

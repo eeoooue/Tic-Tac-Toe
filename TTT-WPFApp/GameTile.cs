@@ -4,6 +4,7 @@ using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using TTT_Library;
@@ -12,16 +13,14 @@ namespace TTT_WPFApp
 {
     internal class GameTile : Button
     {
-
         private TicTacToeGame _myGame;
-
         public int Row { get; private set; }
         public int Column { get; private set; }
+        public string Text { get { return _myGame.GetCellText(Row, Column); } }
 
         public GameTile(TicTacToeGame myGame, int i, int j)
         {
             _myGame = myGame;
-            Content = "";
             Width = 80;
             Height = 80;
             FontSize = 36;
@@ -40,16 +39,11 @@ namespace TTT_WPFApp
 
         public void UpdateMe()
         {
-            string cellValue = _myGame.GetCellText(Row, Column);
-
-            for (int i = 0; i < 9; i++)
-            {
-                Content = cellValue;
-                Background = GetBrushColour(cellValue);
-            }
+            Content = Text;
+            Background = GetBackgroundColour(Text);
         }
 
-        private Brush GetBrushColour(string text)
+        private Brush GetBackgroundColour(string text)
         {
             switch (text)
             {

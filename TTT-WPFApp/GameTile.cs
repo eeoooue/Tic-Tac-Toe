@@ -33,18 +33,19 @@ namespace TTT_WPFApp
         protected override void OnClick()
         {
             _boardTile.Click();
-            _mainWindow.UpdateAllTiles();
+            Update();
+            if (_myGame.GameOver)
+            {
+                _mainWindow.UpdateAllTiles();
+            }
         }
 
         public void Update()
         {
+            SetTeamAppearance();
             if (_myGame.GameOver && !IsWinningTile())
             {
                 SetLosingAppearance();
-            }
-            else
-            {
-                SetTeamAppearance();
             }
         }
 

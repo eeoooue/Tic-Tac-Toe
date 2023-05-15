@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TTT_WPFApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="450">
+        Title="Tic Tac Toe"
+        Height="450" Width="450"
+        Icon="Assets/arcade-machine.ico">
     <Grid x:Name="GameBoard"  Width="300" Height="300">
 
         <Grid.RowDefinitions>

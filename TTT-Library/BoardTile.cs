@@ -18,23 +18,19 @@ namespace TTT_Library
         public BoardTile(TicTacToeGame myGame, int i, int j)
         {
             _game = myGame;
-            Character = '.';
+            Character = ' ';
             Row = i;
             Column = j;
         }
 
-        public bool Click()
+        public void Click()
         {
-            if (_clicked || _game.GameOver)
+            if (!_clicked && !_game.GameOver)
             {
-                return false;
+                Character = _game.CurrentPlayer;
+                _game.Moves++;
+                _clicked = true;
             }
-
-            Character = _game.CurrentPlayer;
-            _game.Moves++;
-            _clicked = true;
-
-            return true;
         }
     }
 }

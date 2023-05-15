@@ -34,10 +34,18 @@ namespace TTT_WPFApp
         {
             foreach(BoardTile boardTile in _myGame.Tiles)
             {
-                GameTile tile = new(boardTile);
+                GameTile tile = new(_myGame, this, boardTile);
                 GameBoard.Children.Add(tile);
                 Grid.SetRow(tile, boardTile.Row);
                 Grid.SetColumn(tile, boardTile.Column);
+            }
+        }
+
+        public void UpdateAllTiles()
+        {
+            foreach(GameTile tile in GameBoard.Children)
+            {
+                tile.Update();
             }
         }
     }

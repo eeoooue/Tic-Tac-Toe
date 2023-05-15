@@ -14,40 +14,63 @@ namespace TTT_WPFApp
     internal class GameTile : Button
     {
         private BoardTile _boardTile;
+        private TicTacToeGame _myGame;
+        private MainWindow _mainWindow;
 
-        public GameTile(BoardTile original)
+        public GameTile(TicTacToeGame myGame, MainWindow mainWindow, BoardTile original)
         {
             Width = 80;
             Height = 80;
-            FontSize = 42;
+            FontSize = 50;
             Foreground = Brushes.White;
 
+            _myGame = myGame;
+            _mainWindow = mainWindow;
             _boardTile = original;
-            UpdateMe();
+            Update();
         }
 
         protected override void OnClick()
         {
             _boardTile.Click();
-            UpdateMe();
+            _mainWindow.UpdateAllTiles();
         }
 
-        public void UpdateMe()
+        public void Update()
         {
-            Content = _boardTile.Character.ToString();
-            Background = GetBackgroundColour();
-        }
-
-        private Brush GetBackgroundColour()
-        {
-            switch (_boardTile.Character)
+            if (_myGame.GameOver && !IsWinningTile())
             {
-                case 'X':
-                    return Brushes.Red;
-                case 'O':
-                    return Brushes.Blue;
-                default:
-                    return Brushes.White;
+                SetLosingAppearance();
+            }
+            else
+            {
+                SetTeamAppearance();
+            }
+        }
+
+        private bool IsWinningTile()
+        {
+            return (_boardTile.Character == _myGame.Winner);
+        }
+
+        private void SetLosingAppearance()
+        {
+            Foreground = Brushes.DarkGray;
+            Background = Brushes.White;
+        }
+
+        private void SetTeamAppearance()
+        {
+            Content = _boardTile.Character;
+            Background = Brushes.White;
+
+            if (_boardTile.Character == 'X')
+            {
+                Background = Brushes.PaleVioletRed;
+            }
+            else if (_boardTile.Character == 'O')
+            {
+                Background = Brushes.CornflowerBlue;
             }
         }
     }

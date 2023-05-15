@@ -8,67 +8,75 @@ namespace TTT_Library
 {
     public class Judge
     {
+        public bool WinnerFound { get; private set; }
+        public char Winner { get; private set; }
+
         private GameBoard _board;
+        private readonly List<BoardTile> _currentLine = new();
 
         public Judge(GameBoard gameboard)
         {
+            WinnerFound = false;
+            Winner = 'N';
             _board = gameboard;
         }
 
         public bool FindsWinner()
         {
-            foreach (List<BoardTile> line in GetPossibleWinningLines())
+            for(int i=0; i<3; i++)
             {
-                if (IsWinningLine(line))
+                for(int j=0; j<3; j++)
                 {
-                    return true;
+                    Explore(i, j, new Impulse(0, 1));
+                    Explore(i, j, new Impulse(1, 0));
+                    Explore(i, j, new Impulse(1, 1));
+                    Explore(i, j, new Impulse(1, -1));
                 }
             }
-            return false;
+
+            return WinnerFound;
         }
 
-        private List<List<BoardTile>> GetPossibleWinningLines()
+        private bool ValidCoordinates(int i, int j)
         {
-            List<List<BoardTile>> result = new List<List<BoardTile>>();
-
-            // horizontals
-            for (int i = 0; i < 3; i++)
-            {
-                result.Add(LineFromImpulse(i, 0, 0, 1));
-            }
-
-            // verticals
-            for (int j = 0; j < 3; j++)
-            {
-                result.Add(LineFromImpulse(0, j, 1, 0));
-            }
-
-            // diagonals
-            result.Add(LineFromImpulse(0, 0, 1, 1));
-            result.Add(LineFromImpulse(0, 2, 1, -1));
-
-            return result;
+            return (0 <= i && i < 3) && (0 <= j && j < 3);
         }
 
-        private List<BoardTile> LineFromImpulse(int i, int j, int y, int x)
+        private void Explore(int i, int j, Impulse impulse)
         {
-            List<BoardTile> result = new List<BoardTile>();
-
-            for (int d = 0; d < 3; d++)
+            if (ValidCoordinates(i, j))
             {
-                result.Add(_board.tiles[i, j]);
-                i += y;
-                j += x;
-            }
+                BoardTile tile = _board.Tiles[i, j];
+                _currentLine.Add(tile);
 
-            return result;
+                if(_currentLine.Count < 3)
+                {
+                    impulse.Translate(ref i, ref j);
+                    Explore(i, j, impulse);
+                }
+                else
+                {
+                    CheckForWinner();
+                }
+
+                _currentLine.Remove(tile);
+            }
+        }
+
+        private void CheckForWinner()
+        {
+            if (IsWinningLine(_currentLine))
+            {
+                WinnerFound = true;
+                Winner = _currentLine[0].Character;
+            }
         }
 
         private bool IsWinningLine(List<BoardTile> line)
         {
             Dictionary<char, int> table = new()
             {
-                { '.', 0 },
+                { ' ', 0 },
                 { 'X', 0 },
                 { 'O', 0 },
             };

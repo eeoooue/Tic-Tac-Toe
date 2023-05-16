@@ -11,8 +11,6 @@ namespace CPU_Opponent
     {
         public char CPUTeam { get; private set; }
 
-        private readonly AnalysisBoard _analysisBoard = new AnalysisBoard();
-
         private readonly TicTacToeGame _game;
 
         private PlayerMove _nextMove = new PlayerMove(0, 0, 'O');
@@ -31,21 +29,23 @@ namespace CPU_Opponent
 
         private PlayerMove GetBestMove()
         {
-            _analysisBoard.MirrorBoardState(_game.Board);
-            CPUTeam = _analysisBoard.CurrentPlayer;
+            CPUTeam = _game.CurrentPlayer;
 
-            ExploreMinMax(0);
+            GameSimulation simulation = new GameSimulation();
+            simulation.MirrorBoardState(_game.Board);
+            
+            ExploreMinMax(simulation, 0);
 
             return _nextMove;
         }
 
-        private int ExploreMinMax(int depth)
+        private int ExploreMinMax(GameSimulation simulation, int depth)
         {
-            char currentPlayer = _analysisBoard.CurrentPlayer;
+            char currentPlayer = simulation.CurrentPlayer;
 
-            if (_analysisBoard.GameOver())
+            if (simulation.GameOver())
             {
-                if (_analysisBoard.WinnerExists())
+                if (simulation.WinnerExists())
                 {
                     if (currentPlayer == CPUTeam)
                     {
@@ -70,9 +70,9 @@ namespace CPU_Opponent
 
                     PlayerMove projectedMove = new PlayerMove(i, j, currentPlayer);
 
-                    if (_analysisBoard.SubmitMove(projectedMove))
+                    if (simulation.SubmitMove(projectedMove))
                     {
-                        int score = ExploreMinMax(depth + 1);
+                        int score = ExploreMinMax(simulation, depth + 1);
 
                         if (score > bestMove.Score)
                         {
@@ -84,7 +84,7 @@ namespace CPU_Opponent
                             worstMove = new EvaluatedMove(projectedMove, score);
                         }
 
-                        _analysisBoard.UndoPreviousMove();
+                        simulation.UndoPreviousMove();
                     }
                 }
             }
@@ -94,14 +94,7 @@ namespace CPU_Opponent
                 _nextMove = bestMove;
             }
 
-            if (currentPlayer == CPUTeam)
-            {
-                return bestMove.Score;
-            }
-            else
-            {
-                return worstMove.Score;
-            }
+            return (currentPlayer == CPUTeam) ? bestMove.Score : worstMove.Score;
         }
     }
 }

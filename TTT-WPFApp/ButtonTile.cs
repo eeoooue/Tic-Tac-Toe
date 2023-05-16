@@ -11,13 +11,13 @@ using TTT_Library;
 
 namespace TTT_WPFApp
 {
-    internal class GameTile : Button
+    internal class ButtonTile : Button
     {
-        private ClickableTile _boardTile;
+        private GameTile _boardTile;
         private TicTacToeGame _myGame;
         private MainWindow _mainWindow;
 
-        public GameTile(TicTacToeGame myGame, MainWindow mainWindow, AbstractTile original)
+        public ButtonTile(TicTacToeGame myGame, MainWindow mainWindow, GameTile original)
         {
             Width = 80;
             Height = 80;
@@ -26,7 +26,7 @@ namespace TTT_WPFApp
 
             _myGame = myGame;
             _mainWindow = mainWindow;
-            _boardTile = original as ClickableTile;
+            _boardTile = original;
             Update();
         }
 

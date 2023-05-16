@@ -11,10 +11,10 @@ namespace TTT_Library
     {
         public GameBoard Board { get; private set; }
         public char CurrentPlayer { get { return (MoveCount % 2 == 0) ? 'X' : 'O'; } }
-        public bool GameOver { get { return MoveCount == 9 || _judge.FindsWinner(); } }
+        public bool GameOver { get { return MoveCount == 9 || WinnerExists; } }
         public int MoveCount { get { return MoveHistory.Count; } }
         public char Winner { get { return _judge.Winner; } }
-        public bool WinnerExists { get { return _judge.FindsWinner(); } }
+        public bool WinnerExists { get { return MoveCount > 1 && _judge.FindsWinner(MoveHistory.Peek()); } }
 
         private Judge _judge;
         public Stack<PlayerMove> MoveHistory { get; private set; }

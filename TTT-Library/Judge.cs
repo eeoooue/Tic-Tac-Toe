@@ -20,25 +20,23 @@ namespace TTT_Library
             _board = gameboard;
         }
 
-        public bool FindsWinner()
+        public bool FindsWinner(PlayerMove recentMove)
         {
             _winnerFound = false;
-            CheckForWinner();
+            CheckForWinner(recentMove);
             return _winnerFound;
         }
 
-        private void CheckForWinner()
+        private void CheckForWinner(PlayerMove move)
         {
-            for (int i = 0; i < 3; i++)
-            {
-                for (int j = 0; j < 3; j++)
-                {
-                    Explore(i, j, new Impulse(0, 1));
-                    Explore(i, j, new Impulse(1, 0));
-                    Explore(i, j, new Impulse(1, 1));
-                    Explore(i, j, new Impulse(1, -1));
-                }
-            }
+            Explore(move.Row, move.Column, new Impulse(0, 1));
+            Explore(move.Row, move.Column, new Impulse(1, 0));
+            Explore(move.Row, move.Column, new Impulse(0, -1));
+            Explore(move.Row, move.Column, new Impulse(-1, 0));
+            Explore(move.Row, move.Column, new Impulse(1, 1));
+            Explore(move.Row, move.Column, new Impulse(-1, 1));
+            Explore(move.Row, move.Column, new Impulse(1, -1));
+            Explore(move.Row, move.Column, new Impulse(-1, -1));
         }
 
         private bool ValidCoordinates(int i, int j)

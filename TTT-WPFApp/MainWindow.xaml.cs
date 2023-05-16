@@ -1,4 +1,5 @@
 ﻿using CPU_Opponent;
+using Game_Library;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using TTT_Library;
 
 namespace TTT_WPFApp
 {

@@ -14,7 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CPU-Opponent\CPU-Opponent.csproj" />
-    <ProjectReference Include="..\TTT-Library\TTT-Library.csproj" />
+    <ProjectReference Include="..\Game-Library\Game-Library.csproj" />
   </ItemGroup>
 
   <ItemGroup>

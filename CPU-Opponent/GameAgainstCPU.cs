@@ -1,4 +1,4 @@
-﻿using TTT_Library;
+﻿using Game_Library;
 
 namespace CPU_Opponent
 {

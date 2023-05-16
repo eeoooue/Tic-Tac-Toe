@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TTT_Library
+namespace Game_Library
 {
     public class Impulse
     {

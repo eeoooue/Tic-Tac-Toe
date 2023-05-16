@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace TTT_Library
 {
@@ -11,7 +12,7 @@ namespace TTT_Library
         public int Row { get; private set; }
         public int Column { get; private set; }
         public char Character { get; protected set; }
-        public bool Clicked { get; protected set; }
+        public bool Marked { get; protected set; }
 
         public AbstractTile(int row, int column)
         {
@@ -20,6 +21,6 @@ namespace TTT_Library
             Character = ' ';
         }
 
-        public abstract void Click();
+        public abstract void Mark();
     }
 }

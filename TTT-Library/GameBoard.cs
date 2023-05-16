@@ -14,7 +14,7 @@ namespace TTT_Library
             {
                 for (int j = 0; j < 3; j++)
                 {
-                    _tiles[i, j] = new BoardTile(myGame, i, j);
+                    _tiles[i, j] = new ClickableTile(myGame, i, j);
                 }
             }
         }

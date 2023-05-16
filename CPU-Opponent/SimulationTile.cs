@@ -15,11 +15,11 @@ namespace CPU_Opponent
             _sim = sim;
         }
 
-        public override void Click()
+        public override void Mark()
         {
-            if (!Clicked)
+            if (!Marked)
             {
-                Clicked = true;
+                Marked = true;
                 Character = _sim.CurrentPlayer;
             }
         }
@@ -28,16 +28,16 @@ namespace CPU_Opponent
         {
             if (team != ' ')
             {
-                Click();
+                Mark();
             }
             Character = team;
         }
 
-        public void Unclick()
+        public void Unmark()
         {
-            if (Clicked)
+            if (Marked)
             {
-                Clicked = false;
+                Marked = false;
                 Character = ' ';
             }
         }

@@ -13,7 +13,7 @@ namespace TTT_WPFApp
 {
     internal class GameTile : Button
     {
-        private AbstractTile _boardTile;
+        private ClickableTile _boardTile;
         private TicTacToeGame _myGame;
         private MainWindow _mainWindow;
 
@@ -26,7 +26,7 @@ namespace TTT_WPFApp
 
             _myGame = myGame;
             _mainWindow = mainWindow;
-            _boardTile = original;
+            _boardTile = original as ClickableTile;
             Update();
         }
 

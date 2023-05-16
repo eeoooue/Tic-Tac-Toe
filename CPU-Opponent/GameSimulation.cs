@@ -52,19 +52,16 @@ namespace CPU_Opponent
         {
             _moves.Push(move);
             AbstractTile tile = _board.GetTile(move.Row, move.Column);
-            tile.Click();
+            tile.Mark();
         }
 
         public void UndoPreviousMove()
         {
-            if (_moves.Count > 0)
+            PlayerMove move = _moves.Pop();
+            AbstractTile tile = _board.GetTile(move.Row, move.Column);
+            if (tile is SimulationTile simTile)
             {
-                PlayerMove move = _moves.Pop();
-                AbstractTile tile = _board.GetTile(move.Row, move.Column);
-                if (tile is SimulationTile simTile)
-                {
-                    simTile.Unclick();
-                }
+                simTile.Unmark();
             }
         }
     }

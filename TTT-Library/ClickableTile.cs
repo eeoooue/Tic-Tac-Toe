@@ -25,6 +25,15 @@ namespace TTT_Library
             }
         }
 
+        public void Unmark()
+        {
+            if (Marked)
+            {
+                Marked = false;
+                Character = ' ';
+            }
+        }
+
         public void Click()
         {
             if (!Marked && !_game.GameOver)

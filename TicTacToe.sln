@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CPU-Opponent", "CPU-Opponen
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Game-Library", "Game-Library\Game-Library.csproj", "{FE43432A-2174-4C99-924F-59031571B451}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF-App", "WPF-App\WPF-App.csproj", "{286C6A77-8A04-459F-994A-EC7874D39BC1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{FE43432A-2174-4C99-924F-59031571B451}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE43432A-2174-4C99-924F-59031571B451}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE43432A-2174-4C99-924F-59031571B451}.Release|Any CPU.Build.0 = Release|Any CPU
+		{286C6A77-8A04-459F-994A-EC7874D39BC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{286C6A77-8A04-459F-994A-EC7874D39BC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{286C6A77-8A04-459F-994A-EC7874D39BC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{286C6A77-8A04-459F-994A-EC7874D39BC1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -3,13 +3,13 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net6.0-windows</TargetFramework>
-    <RootNamespace>TTT_WPFApp</RootNamespace>
+    <RootNamespace>WPF_App</RootNamespace>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="arcade-machine.ico" />
+    <None Remove="Assets\arcade-machine.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -19,7 +19,7 @@
 
   <ItemGroup>
     <Resource Include="Assets\arcade-machine.ico">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
 

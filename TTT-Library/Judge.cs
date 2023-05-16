@@ -10,11 +10,11 @@ namespace TTT_Library
     {
         public char Winner { get; private set; }
 
-        private AbstractGameBoard _board;
+        private GameBoard _board;
         private readonly List<AbstractTile> _currentLine = new();
         private bool _winnerFound = false;
 
-        public Judge(AbstractGameBoard gameboard)
+        public Judge(GameBoard gameboard)
         {
             Winner = 'N';
             _board = gameboard;

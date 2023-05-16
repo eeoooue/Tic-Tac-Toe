@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TTT_Library
+namespace Game_Library
 {
     public class GameTile
-    {        
+    {
         public int Row { get; private set; }
         public int Column { get; private set; }
         public char Character { get; private set; }

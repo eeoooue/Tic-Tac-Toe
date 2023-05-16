@@ -3,23 +3,23 @@
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
     <TargetFramework>net6.0-windows</TargetFramework>
-    <RootNamespace>TTT_WPFApp</RootNamespace>
+    <RootNamespace>WPF_App</RootNamespace>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="arcade-machine.ico" />
+    <None Remove="Assets\arcade-machine.ico" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\CPU-Opponent\CPU-Opponent.csproj" />
-    <ProjectReference Include="..\TTT-Library\TTT-Library.csproj" />
+    <ProjectReference Include="..\Game-Library\Game-Library.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="Assets\arcade-machine.ico">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
 

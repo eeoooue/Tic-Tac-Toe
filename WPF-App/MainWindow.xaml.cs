@@ -1,4 +1,5 @@
 ﻿using CPU_Opponent;
+using Game_Library;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,9 +14,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using TTT_Library;
 
-namespace TTT_WPFApp
+namespace WPF_App
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -33,9 +33,9 @@ namespace TTT_WPFApp
 
         private void CreateButtons()
         {
-            for(int i=0; i<3; i++)
+            for (int i = 0; i < 3; i++)
             {
-                for(int  j=0; j<3; j++)
+                for (int j = 0; j < 3; j++)
                 {
                     GameTile boardTile = _myGame.Board.GetTile(i, j);
                     ButtonTile tile = new(_myGame, this, boardTile);
@@ -48,7 +48,7 @@ namespace TTT_WPFApp
 
         public void UpdateAllTiles()
         {
-            foreach(ButtonTile tile in GameBoard.Children)
+            foreach (ButtonTile tile in GameBoard.Children)
             {
                 tile.Update();
             }

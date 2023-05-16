@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TTT_Library
+namespace Game_Library
 {
     public class Judge
     {
@@ -51,7 +51,7 @@ namespace TTT_Library
                 GameTile tile = _board.GetTile(i, j);
                 _currentLine.Add(tile);
 
-                if(_currentLine.Count < 3)
+                if (_currentLine.Count < 3)
                 {
                     impulse.Translate(ref i, ref j);
                     Explore(i, j, impulse);

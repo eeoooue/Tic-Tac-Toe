@@ -13,11 +13,11 @@ namespace TTT_WPFApp
 {
     internal class GameTile : Button
     {
-        private BoardTile _boardTile;
+        private AbstractTile _boardTile;
         private TicTacToeGame _myGame;
         private MainWindow _mainWindow;
 
-        public GameTile(TicTacToeGame myGame, MainWindow mainWindow, BoardTile original)
+        public GameTile(TicTacToeGame myGame, MainWindow mainWindow, AbstractTile original)
         {
             Width = 80;
             Height = 80;

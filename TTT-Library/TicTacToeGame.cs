@@ -25,7 +25,7 @@ namespace TTT_Library
 
         public void SubmitMove(PlayerMove move)
         {
-            BoardTile tile = Board.GetTile(move.Row, move.Column);
+            AbstractTile tile = Board.GetTile(move.Row, move.Column);
             tile.Click();
         }
 

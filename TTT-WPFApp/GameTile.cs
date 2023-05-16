@@ -33,11 +33,7 @@ namespace TTT_WPFApp
         protected override void OnClick()
         {
             _boardTile.Click();
-            Update();
-            if (_myGame.GameOver)
-            {
-                _mainWindow.UpdateAllTiles();
-            }
+            _mainWindow.UpdateAllTiles();
         }
 
         public void Update()

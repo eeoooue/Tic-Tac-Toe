@@ -13,7 +13,7 @@ namespace CPU_Opponent
 
         public override void NotifyMove()
         {
-            if (CurrentPlayer == _cpuPlayer.CPUTeam)
+            if (CurrentPlayer == _cpuPlayer.CPUTeam && !GameOver)
             {
                 _cpuPlayer.MakeMove();
             }

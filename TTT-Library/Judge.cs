@@ -22,10 +22,8 @@ namespace TTT_Library
 
         public bool FindsWinner()
         {
-            if (!_winnerFound)
-            {
-                CheckForWinner();
-            }
+            _winnerFound = false;
+            CheckForWinner();
             return _winnerFound;
         }
 

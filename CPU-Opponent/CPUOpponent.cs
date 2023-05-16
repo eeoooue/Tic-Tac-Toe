@@ -12,12 +12,13 @@ namespace CPU_Opponent
         public char CPUTeam { get; private set; }
 
         private readonly TicTacToeGame _game;
-        private PlayerMove _nextMove = new PlayerMove(0, 0, 'O');
+        private PlayerMove _nextMove;
 
-        public CPUOpponent(TicTacToeGame game)
+        public CPUOpponent(TicTacToeGame game, char team)
         {
-            CPUTeam = 'O';
+            CPUTeam = team;
             _game = game;
+            _nextMove = new PlayerMove(0, 0, CPUTeam);
         }
 
         public void MakeMove()

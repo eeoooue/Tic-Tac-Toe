@@ -22,17 +22,11 @@ namespace CPU_Opponent
 
         public void MakeMove()
         {
-            PlayerMove bestMove = GetBestMove();
-            _game.SubmitMove(bestMove);
-        }
-
-        private PlayerMove GetBestMove()
-        {
             CPUTeam = _game.CurrentPlayer;
             SimulationGame simulation = new SimulationGame(_game);
             ExploreMinMax(simulation, 0);
 
-            return _nextMove;
+            _game.SubmitMove(_nextMove);
         }
 
         private int ExploreMinMax(SimulationGame simulation, int depth)

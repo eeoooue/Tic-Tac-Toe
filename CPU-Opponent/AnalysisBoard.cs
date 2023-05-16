@@ -13,7 +13,9 @@ namespace CPU_Opponent
 
         private readonly Stack<PlayerMove> _moves = new Stack<PlayerMove>();
 
-        private int _movesCount = 0;
+        public char CurrentPlayer { get { return (MoveCount % 2 == 0) ? 'X' : 'O'; } }
+
+        public int MoveCount { get { return GetMoveCount(); } }
 
         private CPUJudge _judge = new CPUJudge();
 
@@ -22,41 +24,18 @@ namespace CPU_Opponent
             Tiles = new char[3, 3];
         }
 
-        public char GetCurrentPlayer()
-        {
-            _movesCount = 0;
-
-            foreach (char c in Tiles)
-            {
-                if (c != ' ')
-                {
-                    _movesCount++;
-                }
-            }
-
-            if (_movesCount % 2 == 0)
-            {
-                return 'X';
-            }
-            else
-            {
-                return 'O';
-            }
-        }
-
         private int GetMoveCount()
         {
-            _movesCount = 0;
-
+            int count = 0;
             foreach (char c in Tiles)
             {
                 if (c != ' ')
                 {
-                    _movesCount++;
+                    count++;
                 }
             }
 
-            return _movesCount;
+            return count;
         }
 
         public bool WinnerExists()
@@ -66,11 +45,7 @@ namespace CPU_Opponent
 
         public bool GameOver()
         {
-            if (GetMoveCount() == 9)
-            {
-                return true;
-            }
-            return WinnerExists();
+            return (MoveCount == 9) || WinnerExists();
         }
 
         public void MirrorBoardState(GameBoard board)
@@ -81,14 +56,9 @@ namespace CPU_Opponent
             }
         }
 
-        private bool ValidCoordinates(int i, int j)
-        {
-            return (0 <= i && i < 3) && (0 <= j && j < 3);
-        }
-
         private bool CanMove(int i, int j)
         {
-            return ValidCoordinates(i, j) && (Tiles[i, j] == ' ');
+            return Tiles[i, j] == ' ';
         }
 
         public bool SubmitMove(PlayerMove move)

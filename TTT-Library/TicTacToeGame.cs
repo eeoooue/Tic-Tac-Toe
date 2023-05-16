@@ -10,7 +10,7 @@ namespace TTT_Library
     public class TicTacToeGame
     {
         public char CurrentPlayer { get { return (MoveCount % 2 == 0) ? 'X' : 'O'; } }
-        public bool GameOver { get { return (MoveCount == 9 || _judge.FindsWinner()); } }
+        public bool GameOver { get { return MoveCount == 9 || _judge.FindsWinner(); } }
         public char Winner { get { return _judge.Winner; } }
         public int MoveCount { get; set; }
 

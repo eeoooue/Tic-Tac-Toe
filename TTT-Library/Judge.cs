@@ -10,11 +10,11 @@ namespace TTT_Library
     {
         public char Winner { get; private set; }
 
-        private GameBoard _board;
-        private readonly List<BoardTile> _currentLine = new();
+        private AbstractGameBoard _board;
+        private readonly List<AbstractTile> _currentLine = new();
         private bool _winnerFound = false;
 
-        public Judge(GameBoard gameboard)
+        public Judge(AbstractGameBoard gameboard)
         {
             Winner = 'N';
             _board = gameboard;
@@ -52,7 +52,7 @@ namespace TTT_Library
         {
             if (ValidCoordinates(i, j))
             {
-                BoardTile tile = _board.Tiles[i, j];
+                AbstractTile tile = _board.GetTile(i, j);
                 _currentLine.Add(tile);
 
                 if(_currentLine.Count < 3)
@@ -78,7 +78,7 @@ namespace TTT_Library
             }
         }
 
-        private bool IsWinningLine(List<BoardTile> line)
+        private bool IsWinningLine(List<AbstractTile> line)
         {
             Dictionary<char, int> table = new()
             {
@@ -87,7 +87,7 @@ namespace TTT_Library
                 { 'O', 0 },
             };
 
-            foreach (BoardTile tile in line)
+            foreach (AbstractTile tile in line)
             {
                 table[tile.Character] += 1;
             }

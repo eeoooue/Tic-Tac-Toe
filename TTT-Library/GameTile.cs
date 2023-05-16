@@ -1,22 +1,30 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace TTT_Library
 {
-    public class ClickableTile : AbstractTile
-    {
-        
+    public class GameTile
+    {        
+        public int Row { get; private set; }
+        public int Column { get; private set; }
+        public char Character { get; private set; }
+        public bool Marked { get; private set; }
+
         private TicTacToeGame _game;
 
-        public ClickableTile(TicTacToeGame myGame, int i, int j) : base(i, j)
+        public GameTile(TicTacToeGame myGame, int row, int column)
         {
             _game = myGame;
+            Row = row;
+            Column = column;
+            Character = ' ';
         }
 
-        public override void Mark()
+        public void Mark()
         {
             if (!Marked && !_game.GameOver)
             {
@@ -29,8 +37,8 @@ namespace TTT_Library
         {
             if (Marked)
             {
-                Marked = false;
                 Character = ' ';
+                Marked = false;
             }
         }
 

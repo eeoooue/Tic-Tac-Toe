@@ -15,11 +15,6 @@ namespace TTT_Library
         public int Moves { get; set; }
         public BoardTile[,] Tiles { get { return Board.Tiles; } }
 
-
-        private bool _opponent = true;
-
-        private CPUOpponent _cpuPlayer;
-
         public GameBoard Board { get; private set; }
         private Judge _judge;
 
@@ -27,18 +22,9 @@ namespace TTT_Library
         {
             Board = new GameBoard(this);
             _judge = new Judge(Board);
-            _cpuPlayer = new CPUOpponent(this);
+            
         }
 
-        public void NotifyMove()
-        {
-            if (_opponent)
-            { 
-                if (CurrentPlayer == _cpuPlayer.CPUTeam)
-                {
-                    _cpuPlayer.MakeMove();
-                }
-            }
-        }
+        public virtual void NotifyMove() { }
     }
 }

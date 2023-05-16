@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TTT-Library", "TTT-Library\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TTT-WPFApp", "TTT-WPFApp\TTT-WPFApp.csproj", "{2C18FFE7-5A06-4728-9497-DE20D4025E3B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CPU-Opponent", "CPU-Opponent\CPU-Opponent.csproj", "{DF00EAEE-D204-436E-B58F-3F917D6C05DA}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{2C18FFE7-5A06-4728-9497-DE20D4025E3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2C18FFE7-5A06-4728-9497-DE20D4025E3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2C18FFE7-5A06-4728-9497-DE20D4025E3B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF00EAEE-D204-436E-B58F-3F917D6C05DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF00EAEE-D204-436E-B58F-3F917D6C05DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF00EAEE-D204-436E-B58F-3F917D6C05DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF00EAEE-D204-436E-B58F-3F917D6C05DA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

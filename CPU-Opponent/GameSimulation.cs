@@ -30,17 +30,29 @@ namespace CPU_Opponent
             return tile.Character == ' ';
         }
 
-        public bool SubmitMove(PlayerMove move)
+        public List<PlayerMove> GetPossibleMoves()
         {
-            if (CanMove(move.Row, move.Column))
-            {
-                _moves.Push(move);
-                AbstractTile tile = _board.GetTile(move.Row, move.Column);
-                tile.Click();
-                return true;
-            }
+            List<PlayerMove> possibleMoves = new();
 
-            return false;
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
+                {
+                    if (CanMove(i, j))
+                    {
+                        PlayerMove move = new PlayerMove(i, j, CurrentPlayer);
+                        possibleMoves.Add(move);
+                    }
+                }
+            }
+            return possibleMoves;
+        }
+
+        public void SubmitMove(PlayerMove move)
+        {
+            _moves.Push(move);
+            AbstractTile tile = _board.GetTile(move.Row, move.Column);
+            tile.Click();
         }
 
         public void UndoPreviousMove()

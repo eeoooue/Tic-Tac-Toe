@@ -13,15 +13,32 @@ namespace TTT_Library
         public bool GameOver { get { return (Moves == 9 || _judge.FindsWinner()); } }
         public char Winner { get { return _judge.Winner; } }
         public int Moves { get; set; }
-        public BoardTile[,] Tiles { get { return _gameboard.Tiles; } }
+        public BoardTile[,] Tiles { get { return Board.Tiles; } }
 
-        private GameBoard _gameboard;
+
+        private bool _opponent = true;
+
+        private CPUOpponent _cpuPlayer;
+
+        public GameBoard Board { get; private set; }
         private Judge _judge;
 
         public TicTacToeGame()
         {
-            _gameboard = new GameBoard(this);
-            _judge = new Judge(_gameboard);
+            Board = new GameBoard(this);
+            _judge = new Judge(Board);
+            _cpuPlayer = new CPUOpponent(this);
+        }
+
+        public void NotifyMove()
+        {
+            if (_opponent)
+            { 
+                if (CurrentPlayer == _cpuPlayer.CPUTeam)
+                {
+                    _cpuPlayer.MakeMove();
+                }
+            }
         }
     }
 }

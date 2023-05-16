@@ -14,6 +14,8 @@ namespace TTT_Library
         public char Winner { get { return _judge.Winner; } }
         public int MoveCount { get { return _moveHistory.Count; } }
 
+        public bool WinnerExists { get { return _judge.FindsWinner(); } }
+
         public PlayerMove previousMove { get { return _moveHistory.Peek(); } }
 
         
@@ -21,7 +23,7 @@ namespace TTT_Library
         public GameBoard Board { get; private set; }
         private Judge _judge;
 
-        protected Stack<PlayerMove> _moveHistory = new Stack<PlayerMove>();
+        public Stack<PlayerMove> _moveHistory = new Stack<PlayerMove>();
 
         public TicTacToeGame()
         {

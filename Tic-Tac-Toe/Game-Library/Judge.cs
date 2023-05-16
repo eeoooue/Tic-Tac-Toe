@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +12,6 @@ namespace Game_Library
         public char Winner { get; private set; }
 
         private GameBoard _board;
-        private readonly List<GameTile> _currentLine = new();
         private bool _winnerFound = false;
 
         public Judge(GameBoard gameboard)
@@ -29,48 +29,59 @@ namespace Game_Library
 
         private void CheckForWinner(PlayerMove move)
         {
-            Explore(move.Row, move.Column, new Impulse(0, 1));
-            Explore(move.Row, move.Column, new Impulse(1, 0));
-            Explore(move.Row, move.Column, new Impulse(0, -1));
-            Explore(move.Row, move.Column, new Impulse(-1, 0));
-            Explore(move.Row, move.Column, new Impulse(1, 1));
-            Explore(move.Row, move.Column, new Impulse(-1, 1));
-            Explore(move.Row, move.Column, new Impulse(1, -1));
-            Explore(move.Row, move.Column, new Impulse(-1, -1));
+            CheckColumn(move.Column);
+            CheckRow(move.Row);
+            CheckHorizontals();
         }
 
-        private bool ValidCoordinates(int i, int j)
+        private void CheckColumn(int column)
         {
-            return (0 <= i && i < 3) && (0 <= j && j < 3);
-        }
-
-        private void Explore(int i, int j, Impulse impulse)
-        {
-            if (ValidCoordinates(i, j))
+            List<GameTile> line = new List<GameTile>();
+            for(int i=0; i<3; i++)
             {
-                GameTile tile = _board.GetTile(i, j);
-                _currentLine.Add(tile);
-
-                if (_currentLine.Count < 3)
-                {
-                    impulse.Translate(ref i, ref j);
-                    Explore(i, j, impulse);
-                }
-                else
-                {
-                    CheckCurrentLine();
-                }
-
-                _currentLine.Remove(tile);
+                GameTile tile = _board.GetTile(i, column);
+                line.Add(tile);
             }
+            CheckLine(line);
         }
 
-        private void CheckCurrentLine()
+        private void CheckRow(int row)
         {
-            if (IsWinningLine(_currentLine))
+            List<GameTile> line = new List<GameTile>();
+            for (int j = 0; j < 3; j++)
+            {
+                GameTile tile = _board.GetTile(row, j);
+                line.Add(tile);
+            }
+            CheckLine(line);
+        }
+
+        private void CheckHorizontals()
+        {
+            List<GameTile> line;
+            line = new List<GameTile>()
+            {
+                _board.GetTile(0, 0),
+                _board.GetTile(1, 1),
+                _board.GetTile(2, 2),
+            };
+            CheckLine(line);
+
+            line = new List<GameTile>()
+            {
+                _board.GetTile(0, 2),
+                _board.GetTile(1, 1),
+                _board.GetTile(2, 0),
+            };
+            CheckLine(line);
+        }
+
+        private void CheckLine(List<GameTile> line)
+        {
+            if (IsWinningLine(line))
             {
                 _winnerFound = true;
-                Winner = _currentLine[0].Character;
+                Winner = line[0].Character;
             }
         }
 

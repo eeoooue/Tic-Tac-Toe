@@ -33,7 +33,7 @@ namespace TTT_WPFApp
 
         private void CreateButtons()
         {
-            foreach(BoardTile boardTile in _myGame.Tiles)
+            foreach(BoardTile boardTile in _myGame.Board.Tiles)
             {
                 GameTile tile = new(_myGame, this, boardTile);
                 GameBoard.Children.Add(tile);

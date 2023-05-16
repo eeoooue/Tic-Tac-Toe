@@ -26,15 +26,13 @@ namespace CPU_Opponent
         public void MakeMove()
         {
             PlayerMove bestMove = GetBestMove();
-
-            BoardTile tile = _game.Tiles[bestMove.Row, bestMove.Column];
-            tile.Click();
+            _game.SubmitMove(bestMove);
         }
 
         private PlayerMove GetBestMove()
         {
             _analysisBoard.MirrorBoardState(_game.Board);
-            CPUTeam = _analysisBoard.GetCurrentPlayer();
+            CPUTeam = _analysisBoard.CurrentPlayer;
 
             ExploreMinMax(0);
 
@@ -43,16 +41,10 @@ namespace CPU_Opponent
 
         private int ExploreMinMax(int depth)
         {
-            char currentPlayer = _analysisBoard.GetCurrentPlayer();
+            char currentPlayer = _analysisBoard.CurrentPlayer;
 
             if (_analysisBoard.GameOver())
             {
-                // if X won
-
-                // if O won
-
-                // if it was a draw
-
                 if (_analysisBoard.WinnerExists())
                 {
                     if (currentPlayer == CPUTeam)

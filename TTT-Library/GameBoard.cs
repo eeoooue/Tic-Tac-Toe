@@ -22,5 +22,10 @@ namespace TTT_Library
                 }
             }
         }
+
+        public BoardTile GetTile(int i, int j)
+        {
+            return Tiles[i, j];
+        }
     }
 }

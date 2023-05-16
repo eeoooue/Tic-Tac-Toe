@@ -24,9 +24,13 @@ namespace WPF_App
     {
         public TicTacToeGame _myGame;
 
+        private HashSet<Key> _pressed = new HashSet<Key>();
+
         public MainWindow()
         {
             InitializeComponent();
+            KeyDown += new KeyEventHandler(KeyDownListener);
+            KeyUp += new KeyEventHandler(KeyUpListener);
             _myGame = new GameAgainstCPU();
             CreateButtons();
         }
@@ -53,5 +57,56 @@ namespace WPF_App
                 tile.Update();
             }
         }
+
+        private void StartNewGame()
+        {
+            GameBoard.Children.Clear();
+            _myGame = new GameAgainstCPU();
+            CreateButtons();
+        }
+
+        #region keyboard commands
+
+        private void KeyDownListener(object sender, KeyEventArgs e)
+        {
+            _pressed.Add(e.Key);
+
+            switch (e.Key)
+            {
+                case Key.N:
+                    UserShortcutNewGame();
+                    return;
+
+                case Key.Escape:
+                    UserShortcutQuitGame();
+                    return;
+
+                default:
+                    return;
+            }
+        }
+
+        private void KeyUpListener(object sender, KeyEventArgs e)
+        {
+            if (_pressed.Contains(e.Key))
+            {
+                _pressed.Remove(e.Key);
+            }
+        }
+
+        void UserShortcutNewGame()
+        {
+            if ((_pressed.Contains(Key.LeftCtrl) || _pressed.Contains(Key.RightCtrl)) && _pressed.Contains(Key.N))
+            {
+                StartNewGame();
+            }
+        }
+
+        void UserShortcutQuitGame()
+        {
+            Application.Current.Shutdown();
+        }
+
+        #endregion
     }
 }

@@ -20,9 +20,14 @@ namespace CPU_Opponent
 
         private CPUJudge _judge = new CPUJudge();
 
-        public GameSimulation()
+        private TicTacToeGame _game;
+
+        public GameSimulation(TicTacToeGame game)
         {
+            _game = game; 
             Tiles = new char[3, 3];
+
+            MirrorBoardState(game.Board);
         }
 
         private int GetMoveCount()
@@ -51,7 +56,6 @@ namespace CPU_Opponent
 
         public void MirrorBoardState(GameBoard board)
         {
-
             for (int i = 0; i < 3; i++)
             {
                 for (int j = 0; j < 3; j++)

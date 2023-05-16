@@ -31,8 +31,7 @@ namespace CPU_Opponent
         {
             CPUTeam = _game.CurrentPlayer;
 
-            GameSimulation simulation = new GameSimulation();
-            simulation.MirrorBoardState(_game.Board);
+            GameSimulation simulation = new GameSimulation(_game);
             
             ExploreMinMax(simulation, 0);
 

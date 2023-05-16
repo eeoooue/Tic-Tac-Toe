@@ -43,11 +43,11 @@ namespace CPU_Opponent
             {
                 if (currentPlayer == CPUTeam)
                 {
-                    return depth - 20;
+                    return depth - 255;
                 }
                 else
                 {
-                    return 20 - depth;
+                    return 255 - depth;
                 }
             }
             else if (simulation.MoveCount == 9)

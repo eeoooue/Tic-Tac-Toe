@@ -8,24 +8,32 @@ namespace TTT_Library
 {
     public class Judge
     {
-        public bool WinnerFound { get; private set; }
         public char Winner { get; private set; }
 
         private GameBoard _board;
         private readonly List<BoardTile> _currentLine = new();
+        private bool _winnerFound = false;
 
         public Judge(GameBoard gameboard)
         {
-            WinnerFound = false;
             Winner = 'N';
             _board = gameboard;
         }
 
         public bool FindsWinner()
         {
-            for(int i=0; i<3; i++)
+            if (!_winnerFound)
             {
-                for(int j=0; j<3; j++)
+                CheckForWinner();
+            }
+            return _winnerFound;
+        }
+
+        private void CheckForWinner()
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                for (int j = 0; j < 3; j++)
                 {
                     Explore(i, j, new Impulse(0, 1));
                     Explore(i, j, new Impulse(1, 0));
@@ -33,8 +41,6 @@ namespace TTT_Library
                     Explore(i, j, new Impulse(1, -1));
                 }
             }
-
-            return WinnerFound;
         }
 
         private bool ValidCoordinates(int i, int j)
@@ -56,18 +62,18 @@ namespace TTT_Library
                 }
                 else
                 {
-                    CheckForWinner();
+                    CheckCurrentLine();
                 }
 
                 _currentLine.Remove(tile);
             }
         }
 
-        private void CheckForWinner()
+        private void CheckCurrentLine()
         {
             if (IsWinningLine(_currentLine))
             {
-                WinnerFound = true;
+                _winnerFound = true;
                 Winner = _currentLine[0].Character;
             }
         }

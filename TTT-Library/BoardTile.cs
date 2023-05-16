@@ -6,32 +6,23 @@ using System.Threading.Tasks;
 
 namespace TTT_Library
 {
-    public class BoardTile
+    public class BoardTile : AbstractTile
     {
-        public char Character { get; protected set; }
-        public int Row { get; private set; }
-        public int Column { get; private set; }
-
-        public bool Clicked { get { return _clicked; } }
-
-        private bool _clicked = false;
+        
         private TicTacToeGame _game;
 
-        public BoardTile(TicTacToeGame myGame, int i, int j)
+        public BoardTile(TicTacToeGame myGame, int i, int j) : base(i, j)
         {
             _game = myGame;
-            Character = ' ';
-            Row = i;
-            Column = j;
         }
 
-        public void Click()
+        public override void Click()
         {
-            if (!_clicked && !_game.GameOver)
+            if (!Clicked && !_game.GameOver)
             {
                 Character = _game.CurrentPlayer;
                 _game.MoveCount++;
-                _clicked = true;
+                Clicked = true;
                 _game.NotifyMove();
             }
         }

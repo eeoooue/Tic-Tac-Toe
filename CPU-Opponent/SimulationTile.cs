@@ -9,9 +9,10 @@ namespace CPU_Opponent
 {
     internal class SimulationTile : AbstractTile
     {
+        private GameSimulation _sim;
         public SimulationTile(GameSimulation sim, int row, int column) : base(row, column)
         {
-
+            _sim = sim;
         }
 
         public override void Click()
@@ -19,11 +20,16 @@ namespace CPU_Opponent
             if (!Clicked)
             {
                 Clicked = true;
+                Character = _sim.CurrentPlayer;
             }
         }
 
         public void SetTeam(char team)
         {
+            if (team != ' ')
+            {
+                Click();
+            }
             Character = team;
         }
 
@@ -32,6 +38,7 @@ namespace CPU_Opponent
             if (Clicked)
             {
                 Clicked = false;
+                Character = ' ';
             }
         }
     }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CPU_Opponent;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,7 +27,7 @@ namespace TTT_WPFApp
         public MainWindow()
         {
             InitializeComponent();
-            _myGame = new TicTacToeGame();
+            _myGame = new GameAgainstCPU();
             CreateButtons();
         }
 

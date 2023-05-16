@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CPU-Opponent\CPU-Opponent.csproj" />
     <ProjectReference Include="..\TTT-Library\TTT-Library.csproj" />
   </ItemGroup>
 

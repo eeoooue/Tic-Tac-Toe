@@ -8,10 +8,7 @@ namespace TTT_Library
 {
     public class GameBoard
     {
-        protected int _rows = 3;
-        protected int _cols = 3;
-
-        protected AbstractTile[,] _tiles = new AbstractTile[3, 3];
+        protected GameTile[,] _tiles = new GameTile[3, 3];
 
         public GameBoard(TicTacToeGame myGame) 
         {
@@ -19,12 +16,12 @@ namespace TTT_Library
             {
                 for (int j = 0; j < 3; j++)
                 {
-                    _tiles[i, j] = new ClickableTile(myGame, i, j);
+                    _tiles[i, j] = new GameTile(myGame, i, j);
                 }
             }
         }
 
-        public AbstractTile GetTile(int row, int column)
+        public GameTile GetTile(int row, int column)
         {
             return _tiles[row, column];
         }

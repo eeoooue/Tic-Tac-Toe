@@ -37,8 +37,8 @@ namespace TTT_WPFApp
             {
                 for(int  j=0; j<3; j++)
                 {
-                    AbstractTile boardTile = _myGame.Board.GetTile(i, j);
-                    GameTile tile = new(_myGame, this, boardTile);
+                    GameTile boardTile = _myGame.Board.GetTile(i, j);
+                    ButtonTile tile = new(_myGame, this, boardTile);
                     GameBoard.Children.Add(tile);
                     Grid.SetRow(tile, boardTile.Row);
                     Grid.SetColumn(tile, boardTile.Column);
@@ -48,7 +48,7 @@ namespace TTT_WPFApp
 
         public void UpdateAllTiles()
         {
-            foreach(GameTile tile in GameBoard.Children)
+            foreach(ButtonTile tile in GameBoard.Children)
             {
                 tile.Update();
             }

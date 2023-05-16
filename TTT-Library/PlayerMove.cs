@@ -19,17 +19,4 @@ namespace TTT_Library
             Team = team;
         }
     }
-
-    internal class EvaluatedMove : PlayerMove
-    {
-
-        public int Score { get; private set; }
-
-        public EvaluatedMove(int i, int j, char team, int score) : base(i, j, team)
-        {
-            Score = score;
-        }
-
-        public EvaluatedMove(PlayerMove move, int score) : this(move.Row, move.Column, move.Team, score) { }
-    }
 }

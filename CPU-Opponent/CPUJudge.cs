@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TTT_Library
+namespace CPU_Opponent
 {
     internal class CPUJudge
     {

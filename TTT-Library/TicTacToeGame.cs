@@ -9,11 +9,10 @@ namespace TTT_Library
 {
     public class TicTacToeGame
     {
-        public char CurrentPlayer { get { return (Moves % 2 == 0) ? 'X' : 'O'; } }
-        public bool GameOver { get { return (Moves == 9 || _judge.FindsWinner()); } }
+        public char CurrentPlayer { get { return (MoveCount % 2 == 0) ? 'X' : 'O'; } }
+        public bool GameOver { get { return (MoveCount == 9 || _judge.FindsWinner()); } }
         public char Winner { get { return _judge.Winner; } }
-        public int Moves { get; set; }
-        public BoardTile[,] Tiles { get { return Board.Tiles; } }
+        public int MoveCount { get; set; }
 
         public GameBoard Board { get; private set; }
         private Judge _judge;
@@ -22,7 +21,12 @@ namespace TTT_Library
         {
             Board = new GameBoard(this);
             _judge = new Judge(Board);
-            
+        }
+
+        public void SubmitMove(PlayerMove move)
+        {
+            BoardTile tile = Board.GetTile(move.Row, move.Column);
+            tile.Click();
         }
 
         public virtual void NotifyMove() { }

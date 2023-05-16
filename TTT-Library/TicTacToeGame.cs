@@ -18,8 +18,6 @@ namespace TTT_Library
 
         public PlayerMove previousMove { get { return _moveHistory.Peek(); } }
 
-        
-
         public GameBoard Board { get; private set; }
         private Judge _judge;
 

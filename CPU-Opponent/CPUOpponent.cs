@@ -43,7 +43,7 @@ namespace CPU_Opponent
             {
                 if (currentPlayer == CPUTeam)
                 {
-                    return -(20 + depth);
+                    return depth - 20;
                 }
                 else
                 {
@@ -58,27 +58,20 @@ namespace CPU_Opponent
             EvaluatedMove bestMove = new EvaluatedMove(0, 0, currentPlayer, int.MinValue);
             EvaluatedMove worstMove = new EvaluatedMove(0, 0, currentPlayer, int.MaxValue);
 
-            for (int i = 0; i < 3; i++)
+            foreach (PlayerMove possibleMove in simulation.GetPossibleMoves())
             {
-                for (int j = 0; j < 3; j++)
+                simulation.SubmitMove(possibleMove);
+                int score = ExploreMinMax(simulation, depth + 1);
+
+                if (score > bestMove.Score)
                 {
-                    PlayerMove projectedMove = new PlayerMove(i, j, currentPlayer);
-
-                    if (simulation.SubmitMove(projectedMove))
-                    {
-                        int score = ExploreMinMax(simulation, depth + 1);
-
-                        if (score > bestMove.Score)
-                        {
-                            bestMove = new EvaluatedMove(projectedMove, score);
-                        }
-                        if (score < worstMove.Score)
-                        {
-                            worstMove = new EvaluatedMove(projectedMove, score);
-                        }
-                        simulation.UndoPreviousMove();
-                    }
+                    bestMove = new EvaluatedMove(possibleMove, score);
                 }
+                if (score < worstMove.Score)
+                {
+                    worstMove = new EvaluatedMove(possibleMove, score);
+                }
+                simulation.UndoPreviousMove();
             }
 
             if (depth == 0)

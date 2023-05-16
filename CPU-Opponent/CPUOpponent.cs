@@ -29,13 +29,13 @@ namespace CPU_Opponent
         private PlayerMove GetBestMove()
         {
             CPUTeam = _game.CurrentPlayer;
-            GameSimulation simulation = new GameSimulation(_game);
+            SimulationGame simulation = new SimulationGame(_game);
             ExploreMinMax(simulation, 0);
 
             return _nextMove;
         }
 
-        private int ExploreMinMax(GameSimulation simulation, int depth)
+        private int ExploreMinMax(SimulationGame simulation, int depth)
         {
             char currentPlayer = simulation.CurrentPlayer;
 

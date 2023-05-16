@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TTT-WPFApp", "TTT-WPFApp\TTT-WPFApp.csproj", "{2C18FFE7-5A06-4728-9497-DE20D4025E3B}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CPU-Opponent", "CPU-Opponent\CPU-Opponent.csproj", "{DF00EAEE-D204-436E-B58F-3F917D6C05DA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Game-Library", "Game-Library\Game-Library.csproj", "{FE43432A-2174-4C99-924F-59031571B451}"
@@ -17,10 +15,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2C18FFE7-5A06-4728-9497-DE20D4025E3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2C18FFE7-5A06-4728-9497-DE20D4025E3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2C18FFE7-5A06-4728-9497-DE20D4025E3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2C18FFE7-5A06-4728-9497-DE20D4025E3B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DF00EAEE-D204-436E-B58F-3F917D6C05DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DF00EAEE-D204-436E-B58F-3F917D6C05DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DF00EAEE-D204-436E-B58F-3F917D6C05DA}.Release|Any CPU.ActiveCfg = Release|Any CPU

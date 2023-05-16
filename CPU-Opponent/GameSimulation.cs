@@ -9,74 +9,34 @@ namespace CPU_Opponent
 {
     internal class GameSimulation
     {
-        public char[,] Tiles { get; private set; }
-
-        private readonly Stack<PlayerMove> _moves = new Stack<PlayerMove>();
-
-
         public char CurrentPlayer { get { return (MoveCount % 2 == 0) ? 'X' : 'O'; } }
+        public int MoveCount { get { return _board.GetMoveCount(); } }
+        public bool WinnerExists { get { return _judge.FindsWinner(); } }
 
-        public int MoveCount { get { return GetMoveCount(); } }
-
-        private CPUJudge _judge = new CPUJudge();
-
-        private TicTacToeGame _game;
+        private SimulationBoard _board;
+        private Judge _judge;
+        private readonly Stack<PlayerMove> _moves = new Stack<PlayerMove>();
 
         public GameSimulation(TicTacToeGame game)
         {
-            _game = game; 
-            Tiles = new char[3, 3];
-
-            MirrorBoardState(game.Board);
-        }
-
-        private int GetMoveCount()
-        {
-            int count = 0;
-            foreach (char c in Tiles)
-            {
-                if (c != ' ')
-                {
-                    count++;
-                }
-            }
-
-            return count;
-        }
-
-        public bool WinnerExists()
-        {
-            return _judge.HasWinner(Tiles);
-        }
-
-        public bool GameOver()
-        {
-            return (MoveCount == 9) || WinnerExists();
-        }
-
-        public void MirrorBoardState(GameBoard board)
-        {
-            for (int i = 0; i < 3; i++)
-            {
-                for (int j = 0; j < 3; j++)
-                {
-                    AbstractTile tile = board.GetTile(i, j);
-                    Tiles[i, j] = tile.Character;
-                }
-            }
+            _board = new SimulationBoard();
+            _board.CopyBoard(this, game.Board);
+            _judge = new Judge(_board);
         }
 
         private bool CanMove(int i, int j)
         {
-            return Tiles[i, j] == ' ';
+            AbstractTile tile = _board.GetTile(i, j);
+            return tile.Character == ' ';
         }
 
         public bool SubmitMove(PlayerMove move)
         {
             if (CanMove(move.Row, move.Column))
             {
-                Tiles[move.Row, move.Column] = move.Team;
                 _moves.Push(move);
+                AbstractTile tile = _board.GetTile(move.Row, move.Column);
+                tile.Click();
                 return true;
             }
 
@@ -88,7 +48,11 @@ namespace CPU_Opponent
             if (_moves.Count > 0)
             {
                 PlayerMove move = _moves.Pop();
-                Tiles[move.Row, move.Column] = ' ';
+                AbstractTile tile = _board.GetTile(move.Row, move.Column);
+                if (tile is SimulationTile simTile)
+                {
+                    simTile.Unclick();
+                }
             }
         }
     }

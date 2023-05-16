@@ -12,7 +12,6 @@ namespace CPU_Opponent
         public char CPUTeam { get; private set; }
 
         private readonly TicTacToeGame _game;
-
         private PlayerMove _nextMove = new PlayerMove(0, 0, 'O');
 
         public CPUOpponent(TicTacToeGame game)
@@ -30,9 +29,7 @@ namespace CPU_Opponent
         private PlayerMove GetBestMove()
         {
             CPUTeam = _game.CurrentPlayer;
-
             GameSimulation simulation = new GameSimulation(_game);
-            
             ExploreMinMax(simulation, 0);
 
             return _nextMove;
@@ -42,20 +39,19 @@ namespace CPU_Opponent
         {
             char currentPlayer = simulation.CurrentPlayer;
 
-            if (simulation.GameOver())
+            if (simulation.WinnerExists)
             {
-                if (simulation.WinnerExists())
+                if (currentPlayer == CPUTeam)
                 {
-                    if (currentPlayer == CPUTeam)
-                    {
-                        return -(20 + depth);
-                    }
-                    else
-                    {
-                        return 20 - depth;
-                    }
+                    return -(20 + depth);
                 }
-
+                else
+                {
+                    return 20 - depth;
+                }
+            }
+            else if (simulation.MoveCount == 9)
+            {
                 return 0;
             }
 
@@ -66,7 +62,6 @@ namespace CPU_Opponent
             {
                 for (int j = 0; j < 3; j++)
                 {
-
                     PlayerMove projectedMove = new PlayerMove(i, j, currentPlayer);
 
                     if (simulation.SubmitMove(projectedMove))
@@ -77,12 +72,10 @@ namespace CPU_Opponent
                         {
                             bestMove = new EvaluatedMove(projectedMove, score);
                         }
-
                         if (score < worstMove.Score)
                         {
                             worstMove = new EvaluatedMove(projectedMove, score);
                         }
-
                         simulation.UndoPreviousMove();
                     }
                 }

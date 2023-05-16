@@ -8,9 +8,10 @@ namespace TTT_Library
 {
     public abstract class AbstractGameBoard
     {
-        protected AbstractTile[,] _tiles = new AbstractTile[3, 3];
+        protected int _rows = 3;
+        protected int _cols = 3;
 
-        public AbstractGameBoard() { }
+        protected AbstractTile[,] _tiles = new AbstractTile[3, 3];
 
         public AbstractTile GetTile(int row, int column)
         {

@@ -12,27 +12,22 @@ namespace CPU_Opponent
         public char CPUTeam { get; private set; }
 
         private readonly TicTacToeGame _game;
-        private PlayerMove _nextMove = new PlayerMove(0, 0, 'O');
+        private PlayerMove _nextMove;
 
-        public CPUOpponent(TicTacToeGame game)
+        public CPUOpponent(TicTacToeGame game, char team)
         {
-            CPUTeam = 'O';
+            CPUTeam = team;
             _game = game;
+            _nextMove = new PlayerMove(0, 0, CPUTeam);
         }
 
         public void MakeMove()
-        {
-            PlayerMove bestMove = GetBestMove();
-            _game.SubmitMove(bestMove);
-        }
-
-        private PlayerMove GetBestMove()
         {
             CPUTeam = _game.CurrentPlayer;
             SimulationGame simulation = new SimulationGame(_game);
             ExploreMinMax(simulation, 0);
 
-            return _nextMove;
+            _game.SubmitMove(_nextMove);
         }
 
         private int ExploreMinMax(SimulationGame simulation, int depth)

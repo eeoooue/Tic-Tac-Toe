@@ -8,7 +8,8 @@ namespace CPU_Opponent
 
         public GameAgainstCPU()
         {
-            _cpuPlayer = new CPUOpponent(this);
+            _cpuPlayer = new CPUOpponent(this, 'O');
+            NotifyMove();
         }
 
         public override void NotifyMove()

@@ -16,7 +16,7 @@ namespace CPU_Opponent
 
         private void LoadMoves(TicTacToeGame originalGame)
         {
-            foreach (PlayerMove move in originalGame._moveHistory)
+            foreach (PlayerMove move in originalGame.MoveHistory)
             {
                 SubmitMove(move);
             }
@@ -24,7 +24,7 @@ namespace CPU_Opponent
 
         private bool CanMove(int i, int j)
         {
-            AbstractTile tile = Board.GetTile(i, j);
+            GameTile tile = Board.GetTile(i, j);
             return tile.Character == ' ';
         }
 
@@ -48,12 +48,9 @@ namespace CPU_Opponent
 
         public void UndoPreviousMove()
         {
-            PlayerMove move = _moveHistory.Pop();
-            AbstractTile tile = Board.GetTile(move.Row, move.Column);
-            if (tile is ClickableTile clickable)
-            {
-                clickable.Unmark();
-            }
+            PlayerMove move = MoveHistory.Pop();
+            GameTile tile = Board.GetTile(move.Row, move.Column);
+            tile.Unmark();
         }
     }
 }

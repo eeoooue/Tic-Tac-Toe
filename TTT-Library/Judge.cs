@@ -10,35 +10,33 @@ namespace TTT_Library
     {
         public char Winner { get; private set; }
 
-        private AbstractGameBoard _board;
-        private readonly List<AbstractTile> _currentLine = new();
+        private GameBoard _board;
+        private readonly List<GameTile> _currentLine = new();
         private bool _winnerFound = false;
 
-        public Judge(AbstractGameBoard gameboard)
+        public Judge(GameBoard gameboard)
         {
             Winner = 'N';
             _board = gameboard;
         }
 
-        public bool FindsWinner()
+        public bool FindsWinner(PlayerMove recentMove)
         {
             _winnerFound = false;
-            CheckForWinner();
+            CheckForWinner(recentMove);
             return _winnerFound;
         }
 
-        private void CheckForWinner()
+        private void CheckForWinner(PlayerMove move)
         {
-            for (int i = 0; i < 3; i++)
-            {
-                for (int j = 0; j < 3; j++)
-                {
-                    Explore(i, j, new Impulse(0, 1));
-                    Explore(i, j, new Impulse(1, 0));
-                    Explore(i, j, new Impulse(1, 1));
-                    Explore(i, j, new Impulse(1, -1));
-                }
-            }
+            Explore(move.Row, move.Column, new Impulse(0, 1));
+            Explore(move.Row, move.Column, new Impulse(1, 0));
+            Explore(move.Row, move.Column, new Impulse(0, -1));
+            Explore(move.Row, move.Column, new Impulse(-1, 0));
+            Explore(move.Row, move.Column, new Impulse(1, 1));
+            Explore(move.Row, move.Column, new Impulse(-1, 1));
+            Explore(move.Row, move.Column, new Impulse(1, -1));
+            Explore(move.Row, move.Column, new Impulse(-1, -1));
         }
 
         private bool ValidCoordinates(int i, int j)
@@ -50,7 +48,7 @@ namespace TTT_Library
         {
             if (ValidCoordinates(i, j))
             {
-                AbstractTile tile = _board.GetTile(i, j);
+                GameTile tile = _board.GetTile(i, j);
                 _currentLine.Add(tile);
 
                 if(_currentLine.Count < 3)
@@ -76,7 +74,7 @@ namespace TTT_Library
             }
         }
 
-        private bool IsWinningLine(List<AbstractTile> line)
+        private bool IsWinningLine(List<GameTile> line)
         {
             Dictionary<char, int> table = new()
             {
@@ -85,7 +83,7 @@ namespace TTT_Library
                 { 'O', 0 },
             };
 
-            foreach (AbstractTile tile in line)
+            foreach (GameTile tile in line)
             {
                 table[tile.Character] += 1;
             }

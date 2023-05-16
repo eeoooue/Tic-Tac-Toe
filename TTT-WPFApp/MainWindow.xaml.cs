@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CPU_Opponent;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,18 +27,22 @@ namespace TTT_WPFApp
         public MainWindow()
         {
             InitializeComponent();
-            _myGame = new TicTacToeGame();
+            _myGame = new GameAgainstCPU();
             CreateButtons();
         }
 
         private void CreateButtons()
         {
-            foreach(BoardTile boardTile in _myGame.Tiles)
+            for(int i=0; i<3; i++)
             {
-                GameTile tile = new(_myGame, this, boardTile);
-                GameBoard.Children.Add(tile);
-                Grid.SetRow(tile, boardTile.Row);
-                Grid.SetColumn(tile, boardTile.Column);
+                for(int  j=0; j<3; j++)
+                {
+                    AbstractTile boardTile = _myGame.Board.GetTile(i, j);
+                    GameTile tile = new(_myGame, this, boardTile);
+                    GameBoard.Children.Add(tile);
+                    Grid.SetRow(tile, boardTile.Row);
+                    Grid.SetColumn(tile, boardTile.Column);
+                }
             }
         }
 

@@ -13,11 +13,11 @@ namespace TTT_WPFApp
 {
     internal class GameTile : Button
     {
-        private BoardTile _boardTile;
+        private AbstractTile _boardTile;
         private TicTacToeGame _myGame;
         private MainWindow _mainWindow;
 
-        public GameTile(TicTacToeGame myGame, MainWindow mainWindow, BoardTile original)
+        public GameTile(TicTacToeGame myGame, MainWindow mainWindow, AbstractTile original)
         {
             Width = 80;
             Height = 80;
@@ -33,11 +33,7 @@ namespace TTT_WPFApp
         protected override void OnClick()
         {
             _boardTile.Click();
-            Update();
-            if (_myGame.GameOver)
-            {
-                _mainWindow.UpdateAllTiles();
-            }
+            _mainWindow.UpdateAllTiles();
         }
 
         public void Update()

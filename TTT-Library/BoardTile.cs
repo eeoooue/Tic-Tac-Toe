@@ -30,6 +30,7 @@ namespace TTT_Library
                 Character = _game.CurrentPlayer;
                 _game.Moves++;
                 _clicked = true;
+                _game.NotifyMove();
             }
         }
     }

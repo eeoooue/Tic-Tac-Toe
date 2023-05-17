@@ -5,9 +5,11 @@ VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CPU-Opponent", "CPU-Opponent\CPU-Opponent.csproj", "{DF00EAEE-D204-436E-B58F-3F917D6C05DA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Game-Library", "Game-Library\Game-Library.csproj", "{FE43432A-2174-4C99-924F-59031571B451}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Game-Library", "Game-Library\Game-Library.csproj", "{FE43432A-2174-4C99-924F-59031571B451}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF-App", "WPF-App\WPF-App.csproj", "{286C6A77-8A04-459F-994A-EC7874D39BC1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WPF-App", "WPF-App\WPF-App.csproj", "{286C6A77-8A04-459F-994A-EC7874D39BC1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Win-Forms-App", "Win-Forms-App\Win-Forms-App.csproj", "{BA14F098-6CF1-4A89-8F8A-FDACB8F87CC4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{286C6A77-8A04-459F-994A-EC7874D39BC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{286C6A77-8A04-459F-994A-EC7874D39BC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{286C6A77-8A04-459F-994A-EC7874D39BC1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA14F098-6CF1-4A89-8F8A-FDACB8F87CC4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA14F098-6CF1-4A89-8F8A-FDACB8F87CC4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA14F098-6CF1-4A89-8F8A-FDACB8F87CC4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA14F098-6CF1-4A89-8F8A-FDACB8F87CC4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

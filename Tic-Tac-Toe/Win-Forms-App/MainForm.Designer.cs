@@ -1,6 +1,6 @@
 ﻿namespace Win_Forms_App
 {
-    partial class TicTacToe
+    partial class MainForm
     {
         /// <summary>
         ///  Required designer variable.

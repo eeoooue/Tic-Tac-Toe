@@ -1,10 +1,10 @@
 namespace Win_Forms_App
 {
-    public partial class TicTacToe : Form
+    public partial class MainForm : Form
     {
         public List<ButtonTile> Buttons { get; set; }
 
-        public TicTacToe()
+        public MainForm()
         {
             InitializeComponent();
             Buttons = new List<ButtonTile>();

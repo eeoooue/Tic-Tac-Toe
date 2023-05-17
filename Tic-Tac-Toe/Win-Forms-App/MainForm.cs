@@ -1,23 +1,35 @@
 using CPU_Opponent;
 using Game_Library;
+using System.Windows.Forms;
 
 namespace Win_Forms_App
 {
     public partial class MainForm : Form
     {
-        public TicTacToeGame _myGame;
         public List<ButtonTile> Buttons { get; set; }
 
+        private TicTacToeGame _myGame = new GameAgainstCPU();
+
+        private HashSet<Keys> _pressed = new HashSet<Keys>();
+        
         public MainForm()
         {
-            InitializeComponent();
-            _myGame = new GameAgainstCPU();
+            KeyPreview = true;
             Buttons = new List<ButtonTile>();
+            InitializeComponent();
+            StartNewGame();
+        }
+
+        private void StartNewGame()
+        {
+            _myGame = new GameAgainstCPU();
             BuildButtons();
+            UpdateAll();
         }
 
         private void BuildButtons()
         {
+            Controls.Clear();
             Buttons = new List<ButtonTile>();
 
             for(int i=0; i<3; i++)
@@ -43,5 +55,29 @@ namespace Win_Forms_App
                 btn.UpdateMe();
             }
         }
+
+        #region keyboard commands
+
+        protected override void OnKeyDown(KeyEventArgs e)
+        {
+            _pressed.Add(e.KeyCode);
+
+            if (_pressed.Contains(Keys.Escape))
+            {
+                Application.Exit();
+            }
+
+            if (_pressed.Contains(Keys.ControlKey) && _pressed.Contains(Keys.N))
+            {
+                StartNewGame();
+            }
+        }
+
+        protected override void OnKeyUp(KeyEventArgs e)
+        {
+            _pressed.Remove(e.KeyCode);
+        }
+
+        #endregion
     }
 }

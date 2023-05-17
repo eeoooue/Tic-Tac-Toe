@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Game_Library;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,21 +10,35 @@ namespace Win_Forms_App
 {
     public class ButtonTile : Button
     {
-        public int Row { get; private set; }
-        public int Column { get; private set; }
+        public int Row { get { return _tile.Row; } }
+        public int Column { get { return _tile.Column; } }
 
-        public ButtonTile(int i, int j)
+        TicTacToeGame _game;
+        GameTile _tile;
+
+        MainForm _parent;
+
+        public ButtonTile(TicTacToeGame myGame, MainForm parentForm, GameTile original)
         {
-            Row = i;
-            Column = j;
+            _game = myGame;
+            _tile = original;
+            _parent = parentForm;
+
             Font = new Font("Microsoft Sans Serif", 36F);
             Size = new Size(100, 100);
+        }
+
+        public void UpdateMe()
+        {
+            Text = _tile.Character.ToString();
+            Update();
         }
 
         protected override void OnClick(EventArgs e)
         {
             base.OnClick(e);
-            Text = "X";
+            _tile.Click();
+            _parent.UpdateAll();
         }
     }
 }

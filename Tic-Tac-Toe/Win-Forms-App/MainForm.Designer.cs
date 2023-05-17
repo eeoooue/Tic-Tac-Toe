@@ -1,4 +1,6 @@
-﻿namespace Win_Forms_App
+﻿using System.Windows.Forms;
+
+namespace Win_Forms_App
 {
     partial class MainForm
     {

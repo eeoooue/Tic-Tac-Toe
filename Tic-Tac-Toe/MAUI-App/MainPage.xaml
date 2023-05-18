@@ -15,12 +15,12 @@
                 FontSize="32"
                 HorizontalOptions="Center" />
 
-            <Label
+            <!--<Label
                 Text="Welcome to .NET Multi-platform App UI"
                 SemanticProperties.HeadingLevel="Level2"
                 SemanticProperties.Description="Welcome to dot net Multi platform App UI"
                 FontSize="18"
-                HorizontalOptions="Center" />
+                HorizontalOptions="Center" />-->
 
             <Grid x:Name="GameBoard" HorizontalOptions="Center">
 

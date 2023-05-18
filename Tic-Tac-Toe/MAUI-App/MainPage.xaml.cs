@@ -13,7 +13,7 @@ namespace MAUI_App
         public MainPage()
         {
             InitializeComponent();
-            _myGame = new TicTacToeGame();
+            _myGame = new GameAgainstCPU();
             CreateButtons();
         }
 

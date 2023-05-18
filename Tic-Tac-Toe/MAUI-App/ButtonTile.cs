@@ -12,26 +12,58 @@ namespace MAUI_App
 
         private TicTacToeGame _game;
         private GameTile _tile;
+        private MainPage _page;
 
-        public ButtonTile(TicTacToeGame game, GameTile tile)
+        public ButtonTile(TicTacToeGame game, MainPage page, GameTile tile)
         {
             _game = game;
+            _page = page;
             _tile = tile;
             Text = " ";
             FontSize = 50;
             Clicked += ClickAction;
-            BorderColor = Color.FromArgb("#666666");
+            TextColor = Color.FromArgb("#ffffff");
         }
 
         public void UpdateAppearance()
         {
+            SetTeamAppearance();
+            if (_game.GameOver && !IsWinningTile())
+            {
+                SetLosingAppearance();
+            }
+        }
+
+        private bool IsWinningTile()
+        {
+            return (_tile.Character == _game.Winner);
+        }
+
+        private void SetTeamAppearance()
+        {
             Text = _tile.Character.ToString();
+            Background = Color.FromArgb("#ffffff");
+
+            if (_tile.Character == 'X')
+            {
+                Background = Color.FromArgb("#DB7093");
+            }
+            else if (_tile.Character == 'O')
+            {
+                Background = Color.FromArgb("#6495ED");
+            }
+        }
+
+        private void SetLosingAppearance()
+        {
+            TextColor = Color.FromArgb("#aaaaaa");
+            Background = Color.FromArgb("#ffffff");
         }
 
         private void ClickAction(object sender, EventArgs e)
         {
             _tile.Click();
-            UpdateAppearance();
+            _page.UpdateButtons();
         }
     }
 }

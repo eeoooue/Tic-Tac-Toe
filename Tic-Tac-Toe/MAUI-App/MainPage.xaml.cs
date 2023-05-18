@@ -8,6 +8,8 @@ namespace MAUI_App
 
         private TicTacToeGame _myGame;
 
+        private List<ButtonTile> _buttonTiles = new List<ButtonTile>();
+
         public MainPage()
         {
             InitializeComponent();
@@ -17,16 +19,27 @@ namespace MAUI_App
 
         private void CreateButtons()
         {
+            _buttonTiles.Clear();
+
             for (int i = 0; i < 3; i++)
             {
                 for (int j = 0; j < 3; j++)
                 {
                     GameTile tile = _myGame.Board.GetTile(i, j);
-                    ButtonTile button = new(_myGame, tile);
+                    ButtonTile button = new(_myGame, this, tile);
                     GameBoard.Children.Add(button);
                     Grid.SetRow(button, i);
                     Grid.SetColumn(button, j);
+                    _buttonTiles.Add(button);
                 }
+            }
+        }
+
+        public void UpdateButtons()
+        {
+            foreach(ButtonTile button in _buttonTiles)
+            {
+                button.UpdateAppearance();
             }
         }
 

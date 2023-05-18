@@ -48,4 +48,9 @@
 		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\CPU-Opponent\CPU-Opponent.csproj" />
+	  <ProjectReference Include="..\Game-Library\Game-Library.csproj" />
+	</ItemGroup>
+
 </Project>

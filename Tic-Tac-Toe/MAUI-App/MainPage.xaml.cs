@@ -1,10 +1,17 @@
-﻿namespace MAUI_App
+﻿using CPU_Opponent;
+using Game_Library;
+
+namespace MAUI_App
 {
     public partial class MainPage : ContentPage
     {
+
+        private TicTacToeGame _myGame;
+
         public MainPage()
         {
             InitializeComponent();
+            _myGame = new TicTacToeGame();
             CreateButtons();
         }
 
@@ -14,10 +21,11 @@
             {
                 for (int j = 0; j < 3; j++)
                 {
-                    ButtonTile tile = new();
-                    GameBoard.Children.Add(tile);
-                    Grid.SetRow(tile, i);
-                    Grid.SetColumn(tile, j);
+                    GameTile tile = _myGame.Board.GetTile(i, j);
+                    ButtonTile button = new(_myGame, tile);
+                    GameBoard.Children.Add(button);
+                    Grid.SetRow(button, i);
+                    Grid.SetColumn(button, j);
                 }
             }
         }

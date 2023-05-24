@@ -8,19 +8,20 @@ namespace CPU_Char_Matrix
 
         public PlayerMove GetBestMove(char[,] gameState)
         {
-            char team = GetTurnPlayer(gameState);
-            MinMaxEval move = ExploreMinMax(gameState, team);
+            int moveCount = _judge.CountMoves(gameState);
+            char team = GetTurnPlayer(moveCount);
+
+            MinMaxEval move = ExploreMinMax(gameState, team, moveCount);
 
             PlayerMove bestMove = new PlayerMove(move.I, move.J, team);
             return bestMove;
         }
 
-        private MinMaxEval ExploreMinMax(char[,] givenGameState, char team)
+        private MinMaxEval ExploreMinMax(char[,] gameState, char team, int moveCount)
         {
-            char turnPlayer = GetTurnPlayer(givenGameState);
-            int moveCount = _judge.CountMoves(givenGameState);
+            char turnPlayer = GetTurnPlayer(moveCount);
 
-            if (_judge.ContainsWinner(givenGameState))
+            if (_judge.ContainsWinner(gameState))
             {
                 int score = (turnPlayer == team) ? (moveCount - 255) : (255 - moveCount);
                 return new MinMaxEval(0, 0, score);
@@ -29,8 +30,6 @@ namespace CPU_Char_Matrix
             {
                 return new MinMaxEval(0, 0, 0);
             }
-
-            char[,] gameState = CopyGameState(givenGameState);
 
             MinMaxEval bestMove = new MinMaxEval(0, 0, -255);
             MinMaxEval worstMove = new MinMaxEval(0, 0, 255);
@@ -42,7 +41,7 @@ namespace CPU_Char_Matrix
                     if (gameState[i, j] == ' ')
                     {
                         gameState[i, j] = turnPlayer;
-                        MinMaxEval projection = ExploreMinMax(gameState, team);
+                        MinMaxEval projection = ExploreMinMax(gameState, team, moveCount+1);
                         MinMaxEval evaluation = new MinMaxEval(i, j, projection.Score);
                         gameState[i, j] = ' ';
 
@@ -62,28 +61,9 @@ namespace CPU_Char_Matrix
             return (turnPlayer == team) ? bestMove : worstMove;
         }
 
-        private char GetTurnPlayer(char[,] gameState)
-        {
-            return GetTurnPlayer(_judge.CountMoves(gameState));
-        }
-
         private char GetTurnPlayer(int moveCount)
         {
             return (moveCount % 2 == 0) ? 'X' : 'O';
-        }
-
-        private char[,] CopyGameState(char[,] gameState)
-        {
-            char[,] copy = new char[3, 3];
-            for (int i = 0; i < 3; i++)
-            {
-                for (int j = 0; j < 3; j++)
-                {
-                    copy[i, j] = gameState[i, j];
-                }
-            }
-
-            return copy;
         }
     }
 }

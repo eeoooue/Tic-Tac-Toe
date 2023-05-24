@@ -13,13 +13,12 @@ class Solver
 {
 	private:
 		Judge judge;
-		
 		char GetTurnPlayer(const int moves);
 		MinMaxEval MinMaxExplore(vector<vector <char>> board, const char team, const int moves);
+		vector<vector <char>> UnpackBoard(const string line);
 		string UnpackEvaluation(const MinMaxEval evaluation);
 
-
 	public:
-		string GetBestMove(vector<vector <char>> board);
+		string GetBestMove(const string line);
 };
 

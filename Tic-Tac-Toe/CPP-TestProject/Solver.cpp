@@ -7,10 +7,16 @@
 
 using namespace std;
 
-string Solver::GetBestMove(vector<vector <char>> board) {
+string Solver::GetBestMove(const string line) {
 
+	vector<vector <char>> board = UnpackBoard(line);
 	const int moves = judge.CountMoves(board);
 	const char team = GetTurnPlayer(moves);
+
+	if (moves == 0) {
+		return "1 1";
+	}
+
 	const MinMaxEval evaluation = MinMaxExplore(board, team, moves);
 
 	return UnpackEvaluation(evaluation);
@@ -75,6 +81,26 @@ MinMaxEval Solver::MinMaxExplore(vector<vector <char>> board, const char team, c
 		return worstMove;
 	}
 }
+
+
+vector<vector <char>> Solver::UnpackBoard(const string line)
+{
+	vector<vector <char>> board(3, vector<char>(3));
+
+	int p = 0;
+
+	for (int i = 0; i < 3; i++) {
+
+		for (int j = 0; j < 3; j++) {
+
+			board[i][j] = line[p];
+			p++;
+		}
+	}
+
+	return board;
+}
+
 
 string Solver::UnpackEvaluation(const MinMaxEval evaluation) {
 

@@ -129,7 +129,6 @@
   <ItemGroup>
     <ClCompile Include="CPP-TestProject.cpp" />
     <ClCompile Include="Judge.cpp" />
-    <ClCompile Include="MinMaxEval.cpp" />
     <ClCompile Include="Solver.cpp" />
   </ItemGroup>
   <ItemGroup>

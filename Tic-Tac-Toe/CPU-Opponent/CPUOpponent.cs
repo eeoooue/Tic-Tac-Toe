@@ -9,39 +9,28 @@ namespace CPU_Opponent
 {
     public class CPUOpponent : Opponent
     {
-        private PlayerMove _nextMove;
-
-        public CPUOpponent(char team) : base(team)
-        {
-            _nextMove = new PlayerMove(0, 0, Team);
-        }
+        public CPUOpponent(char team) : base(team) { }
 
         public override PlayerMove MakeMove(TicTacToeGame game)
         {
             SimulationGame simulation = new SimulationGame(game);
-            ExploreMinMax(simulation, 0);
+            MinMaxEval evaluation = ExploreMinMax(simulation, 0);
 
-            return _nextMove;
+            return new PlayerMove(evaluation.i, evaluation.j, Team);
         }
 
-        private int ExploreMinMax(SimulationGame simulation, int depth)
+        private MinMaxEval ExploreMinMax(SimulationGame simulation, int depth)
         {
             char currentPlayer = simulation.CurrentPlayer;
 
             if (simulation.WinnerExists)
             {
-                if (currentPlayer == Team)
-                {
-                    return depth - 255;
-                }
-                else
-                {
-                    return 255 - depth;
-                }
+                int score = (currentPlayer == Team) ? (depth - 255) : (255 - depth);
+                return new MinMaxEval(0, 0, score);
             }
             else if (simulation.MoveCount == 9)
             {
-                return 0;
+                return new MinMaxEval(0, 0, 0);
             }
 
             MinMaxEval bestMove = new MinMaxEval(0, 0, int.MinValue);
@@ -50,25 +39,21 @@ namespace CPU_Opponent
             foreach (PlayerMove possibleMove in simulation.GetPossibleMoves())
             {
                 simulation.SubmitMove(possibleMove);
-                int score = ExploreMinMax(simulation, depth + 1);
-
-                if (score > bestMove.score)
-                {
-                    bestMove = new MinMaxEval(possibleMove, score);
-                }
-                if (score < worstMove.score)
-                {
-                    worstMove = new MinMaxEval(possibleMove, score);
-                }
+                MinMaxEval projection = ExploreMinMax(simulation, depth + 1);
+                MinMaxEval evaluation = new MinMaxEval(possibleMove, projection.score);
                 simulation.UndoPreviousMove();
+
+                if (evaluation.score > bestMove.score)
+                {
+                    bestMove = evaluation;
+                }
+                if (evaluation.score < worstMove.score)
+                {
+                    worstMove = evaluation;
+                }
             }
 
-            if (depth == 0)
-            {
-                _nextMove = new PlayerMove(bestMove.i, bestMove.j, Team);
-            }
-
-            return (currentPlayer == Team) ? bestMove.score : worstMove.score;
+            return (currentPlayer == Team) ? bestMove : worstMove;
         }
     }
 }

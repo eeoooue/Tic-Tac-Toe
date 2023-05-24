@@ -11,18 +11,10 @@ namespace Test_Console
         
         public static extern int fnCPPOpponent();
 
-
         static void Main(string[] args)
         {
-            Console.WriteLine("This project will test my CPP-Wrapper");
-
-            int output = fnCPPOpponent();
-
-            Console.WriteLine($"the output said {output}");
-
-
-            //CPPWrapper wrapper = new CPPWrapper();
-            //wrapper.Test();
+            CPPWrapper wrapper = new CPPWrapper();
+            wrapper.Test();
         }
     }
 }

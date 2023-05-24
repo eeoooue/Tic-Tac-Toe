@@ -9,20 +9,20 @@
 using namespace std;
 
 string ParseStateInt(int boardStateInt);
+int ConvertMove(string move);
 
-// This is an example of an exported function.
-extern "C" CPPOPPONENT_API int fnCPPOpponent(void)
+// This is an exported function.
+extern "C" CPPOPPONENT_API int GetMoveString(int boardstate)
 {
-    return 56;
-}
-
-// This is an example of an exported function.
-extern "C" CPPOPPONENT_API int GetMoveString(int boardStateInt)
-{
-    string boardState = ParseStateInt(boardStateInt);
+    string board = ParseStateInt(boardstate);
 
     Solver solver{};
-    string bestMove = solver.GetBestMove(boardState);
+    string bestMove = solver.GetBestMove(board);
+
+    return ConvertMove(bestMove);
+}
+
+int ConvertMove(string bestMove) {
 
     if (bestMove == "0 0") {
         return 0;
@@ -63,31 +63,26 @@ extern "C" CPPOPPONENT_API int GetMoveString(int boardStateInt)
     return 0;
 }
 
-string ParseStateInt(int boardStateInt) {
+string ParseStateInt(int boardstate) {
 
-    string digitString = to_string(boardStateInt);
+    const string s = to_string(boardstate);
+    const int n = s.length();
 
-    const int n = digitString.length();
-
-    string padding = "";
-
+    string build = "";
     for (int i = n; i < 9; i++) {
-        padding = padding + " ";
+        build = build + " ";
     }
 
-    string conversion = "";
     for (int i = 0; i < n; i++) {
-
-        char digit = digitString[i];
-
+        char digit = s[i];
         if (digit == '1') {
-            conversion = conversion + "X";
+            build = build + "X";
         } else if (digit == '2') {
-            conversion = conversion + "O";
+            build = build + "O";
         } else {
-            conversion = conversion + " ";
+            build = build + " ";
         }
     }
 
-    return padding + conversion;
+    return build;
 }

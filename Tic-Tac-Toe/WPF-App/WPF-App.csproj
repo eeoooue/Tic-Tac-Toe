@@ -14,7 +14,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CPP-Wrapper\CPP-Wrapper.csproj" />
-    <ProjectReference Include="..\CPU-Char-Matrix\CPU-Char-Matrix.csproj" />
     <ProjectReference Include="..\CPU-Opponent\CPU-Opponent.csproj" />
     <ProjectReference Include="..\Game-Library\Game-Library.csproj" />
   </ItemGroup>

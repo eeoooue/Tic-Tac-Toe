@@ -6,18 +6,17 @@ using System.Threading.Tasks;
 
 namespace CPU_Char_Matrix
 {
-    internal class MinMaxEval
+    internal readonly struct MinMaxEval
     {
-        // in cpp we'll just do this with a string or a struct
-        public int I { get; private set; }
-        public int J { get; private set; }
-        public int Score { get; private set; }
+        public readonly int i;
+        public readonly int j;
+        public readonly int score;
 
         public MinMaxEval(int i, int j, int score)
         {
-            I = i;
-            J = j;
-            Score = score;
+            this.i = i;
+            this.j = j;
+            this.score = score;
         }
     }
 }

@@ -19,4 +19,4 @@ public:
 
 extern CPPOPPONENT_API int nCPPOpponent;
 
-CPPOPPONENT_API int fnCPPOpponent(void);
+extern "C" CPPOPPONENT_API int fnCPPOpponent(void);

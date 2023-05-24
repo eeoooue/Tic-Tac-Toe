@@ -10,7 +10,7 @@
 CPPOPPONENT_API int nCPPOpponent=0;
 
 // This is an example of an exported function.
-CPPOPPONENT_API int fnCPPOpponent(void)
+extern "C" CPPOPPONENT_API int fnCPPOpponent(void)
 {
     return 0;
 }

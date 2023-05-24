@@ -8,4 +8,14 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CPP-Wrapper\CPP-Wrapper.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="CPPOpponent.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

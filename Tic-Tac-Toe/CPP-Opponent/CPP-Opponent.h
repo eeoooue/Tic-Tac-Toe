@@ -9,5 +9,5 @@
 #else
 #define CPPOPPONENT_API __declspec(dllimport)
 #endif
-
-extern "C" CPPOPPONENT_API int fnCPPOpponent(void);
+//
+//extern "C" CPPOPPONENT_API int fnCPPOpponent(void);

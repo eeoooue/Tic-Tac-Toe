@@ -32,7 +32,7 @@ namespace WPF_App
             InitializeComponent();
             KeyDown += new KeyEventHandler(KeyDownListener);
             KeyUp += new KeyEventHandler(KeyUpListener);
-            _myGame = new GameAgainstOpponent(new CPUOpponent('O'));
+            _myGame = new GameAgainstOpponent(new CPPOpponent('O'));
             CreateButtons();
         }
 

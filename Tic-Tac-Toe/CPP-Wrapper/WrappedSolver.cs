@@ -22,14 +22,10 @@ namespace CPP_Wrapper
 
         public PlayerMove GetBestMove(int boardStateInt)
         {
-            int val = GetMoveString(boardStateInt);
-            return ParseMove(val);
-        }
+            int value = GetMoveString(boardStateInt);
+            int i = value / 10;
+            int j = value % 10;
 
-        private PlayerMove ParseMove(int input)
-        {
-            int i = input / 10;
-            int j = input % 10;
             return new PlayerMove(i, j, Team);
         }
     }

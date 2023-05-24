@@ -21,17 +21,23 @@ void Solver::GetBestMove(vector<vector <char>> board) {
 }
 
 
-
-
 MinMaxEval Solver::MinMaxExplore(vector<vector <char>> board, char team, int moves) {
 
 	char turnPlayer = GetTurnPlayer(moves);
 	Judge judge;
 
+	if (judge.FindsWinner(board)) {
 
+		if (turnPlayer == team) {
+			return GetDummyEval(moves - 255);
+		} else {
+			return GetDummyEval(255 - moves);
+		}
+	}
 
-	
-
+	if (moves == 9) {
+		return GetDummyEval(0);
+	}
 
 	MinMaxEval bestMove = GetDummyEval(-255);
 	MinMaxEval worstMove = GetDummyEval(255);

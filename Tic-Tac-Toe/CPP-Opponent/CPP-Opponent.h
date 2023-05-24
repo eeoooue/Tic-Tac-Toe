@@ -10,13 +10,4 @@
 #define CPPOPPONENT_API __declspec(dllimport)
 #endif
 
-// This class is exported from the dll
-class CPPOPPONENT_API CCPPOpponent {
-public:
-	CCPPOpponent(void);
-	// TODO: add your methods here.
-};
-
-extern CPPOPPONENT_API int nCPPOpponent;
-
 extern "C" CPPOPPONENT_API int fnCPPOpponent(void);

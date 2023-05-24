@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,20 +10,31 @@ namespace CPP_Wrapper
 {
     public class CPPOpponent : Opponent
     {
-        private WrappedSolver Solver { get; set; }
+        [DllImport("CPPOpponent.dll", CallingConvention = CallingConvention.StdCall)]
+        public static extern int GetMoveString(int boardStateInt);
+
+        private Dictionary<char, char> CharTable { get; set; }
 
         public CPPOpponent(char team) : base(team)
         {
-            Solver = new WrappedSolver(team);
+            CharTable = new Dictionary<char, char>();
+            CharTable[' '] = '0';
+            CharTable['X'] = '1';
+            CharTable['O'] = '2';
         }
 
         public override PlayerMove MakeMove(TicTacToeGame game)
         {
             int boardStateInt = GetBoardstateInt(game.Board);
-            return Solver.GetBestMove(boardStateInt);
+
+            int value = GetMoveString(boardStateInt);
+            int i = value / 10;
+            int j = value % 10;
+
+            return new PlayerMove(i, j, Team);
         }
 
-        private int GetBoardstateInt(GameBoard board)
+        public int GetBoardstateInt(GameBoard board)
         {
             StringBuilder sb = new StringBuilder();
 
@@ -31,26 +43,13 @@ namespace CPP_Wrapper
                 for (int j = 0; j < 3; j++)
                 {
                     GameTile tile = board.GetTile(i, j);
-                    char digit = GetBoardstateChar(tile.Character);
+                    char digit = CharTable[tile.Character];
                     sb.Append(digit);
                 }
             }
 
             string stateString = sb.ToString();
             return int.Parse(stateString);
-        }
-
-        private char GetBoardstateChar(char team)
-        {
-            switch (team)
-            {
-                case 'X':
-                    return '1';
-                case 'O':
-                    return '2';
-                default:
-                    return '0';
-            }
         }
     }
 }

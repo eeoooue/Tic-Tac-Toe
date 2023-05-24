@@ -11,10 +11,9 @@ namespace CPU_Char_Matrix
             int moveCount = _judge.CountMoves(gameState);
             char team = GetTurnPlayer(moveCount);
 
-            MinMaxEval move = ExploreMinMax(gameState, team, moveCount);
+            MinMaxEval evaluation = ExploreMinMax(gameState, team, moveCount);
 
-            PlayerMove bestMove = new PlayerMove(move.I, move.J, team);
-            return bestMove;
+            return new PlayerMove(evaluation.i, evaluation.j, team);
         }
 
         private MinMaxEval ExploreMinMax(char[,] gameState, char team, int moveCount)
@@ -42,15 +41,15 @@ namespace CPU_Char_Matrix
                     {
                         gameState[i, j] = turnPlayer;
                         MinMaxEval projection = ExploreMinMax(gameState, team, moveCount+1);
-                        MinMaxEval evaluation = new MinMaxEval(i, j, projection.Score);
+                        MinMaxEval evaluation = new MinMaxEval(i, j, projection.score);
                         gameState[i, j] = ' ';
 
-                        if (evaluation.Score > bestMove.Score)
+                        if (evaluation.score > bestMove.score)
                         {
                             bestMove = evaluation;
                         }
 
-                        if (evaluation.Score < worstMove.Score)
+                        if (evaluation.score < worstMove.score)
                         {
                             worstMove = evaluation;
                         }

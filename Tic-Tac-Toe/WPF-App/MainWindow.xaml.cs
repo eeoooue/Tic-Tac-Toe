@@ -1,4 +1,5 @@
-﻿using CPU_Char_Matrix;
+﻿using CPP_Wrapper;
+using CPU_Char_Matrix;
 using CPU_Opponent;
 using Game_Library;
 using System;
@@ -32,7 +33,7 @@ namespace WPF_App
             InitializeComponent();
             KeyDown += new KeyEventHandler(KeyDownListener);
             KeyUp += new KeyEventHandler(KeyUpListener);
-            _myGame = new GameAgainstOpponent(new CharArrayOpponent('O'));
+            _myGame = new GameAgainstOpponent(new CPPOpponent('O'));
             CreateButtons();
         }
 

@@ -19,7 +19,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CPP-Opponent", "CPP-Opponen
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CPP-TestProject", "CPP-TestProject\CPP-TestProject.vcxproj", "{E3FD029D-C757-41DD-80B5-6E7096EFC08F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CPP-Wrapper", "CPP-Wrapper\CPP-Wrapper.csproj", "{B5BEA80F-1F31-4C3C-84F4-54183F9B9857}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CPP-Wrapper", "CPP-Wrapper\CPP-Wrapper.csproj", "{B5BEA80F-1F31-4C3C-84F4-54183F9B9857}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

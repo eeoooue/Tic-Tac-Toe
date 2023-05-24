@@ -13,16 +13,6 @@ namespace CPU_Char_Matrix
             return bestMove;
         }
 
-        public char[,] GetNextState(char[,] gameState)
-        {
-            char team = GetTurnPlayer(gameState);
-            MinMaxEval move = ExploreMinMax(gameState, team);
-
-            gameState[move.I, move.J] = team;
-
-            return gameState;
-        }
-
         private MinMaxEval ExploreMinMax(char[,] givenGameState, char team)
         {
             char turnPlayer = GetTurnPlayer(givenGameState);
@@ -47,12 +37,12 @@ namespace CPU_Char_Matrix
             {
                 for (int j = 0; j < 3; j++)
                 {
-                    if (gameState[i, j] == '.')
+                    if (gameState[i, j] == ' ')
                     {
                         gameState[i, j] = turnPlayer;
                         MinMaxEval projection = ExploreMinMax(gameState, team);
                         MinMaxEval evaluation = new MinMaxEval(i, j, projection.Score);
-                        gameState[i, j] = '.';
+                        gameState[i, j] = ' ';
 
                         if (evaluation.Score > bestMove.Score)
                         {
@@ -73,7 +63,7 @@ namespace CPU_Char_Matrix
         private char GetTurnPlayer(char[,] gameState)
         {
             int moveCount = CountMoves(gameState);
-            return (moveCount % 2 == 0) ? 'x' : 'o';
+            return (moveCount % 2 == 0) ? 'X' : 'O';
         }
 
         private char[,] CopyGameState(char[,] gameState)
@@ -95,7 +85,7 @@ namespace CPU_Char_Matrix
             int count = 0;
             foreach (char c in game)
             {
-                if (c != '.')
+                if (c != ' ')
                 {
                     count++;
                 }
@@ -126,7 +116,7 @@ namespace CPU_Char_Matrix
         {
             char team = game[i, 0];
 
-            if (team == '.')
+            if (team == ' ')
             {
                 return false;
             }
@@ -138,7 +128,7 @@ namespace CPU_Char_Matrix
         {
             char team = game[0, j];
 
-            if (team == '.')
+            if (team == ' ')
             {
                 return false;
             }
@@ -150,7 +140,7 @@ namespace CPU_Char_Matrix
         {
             char team = game[1, 1];
 
-            if (team == '.')
+            if (team == ' ')
             {
                 return false;
             }

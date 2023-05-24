@@ -16,6 +16,12 @@ int Judge::CountMoves(vector<vector <char>> board) {
     }
 
     return count;
+}
 
 
+bool Judge::FindsWinner(vector<vector <char>> board) {
+
+
+
+    return true;
 }

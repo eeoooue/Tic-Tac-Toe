@@ -127,14 +127,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Counter.cpp" />
     <ClCompile Include="CPP-TestProject.cpp" />
     <ClCompile Include="Judge.cpp" />
     <ClCompile Include="MinMaxEval.cpp" />
     <ClCompile Include="Solver.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Counter.h" />
     <ClInclude Include="Judge.h" />
     <ClInclude Include="MinMaxEval.h" />
     <ClInclude Include="Solver.h" />

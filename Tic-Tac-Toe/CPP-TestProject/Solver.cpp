@@ -10,14 +10,24 @@ using namespace std;
 
 void Solver::GetBestMove(vector<vector <char>> board) {
 
+	cout << "finding the best move";
+	cout << endl;
+
 	Judge judge;
 	int moves = judge.CountMoves(board);
+	cout << "turns so far: " << moves;
+	cout << endl;
+
 	char team = GetTurnPlayer(moves);
+	cout << "turn player: " << team;
+	cout << endl;
+
 
 	MinMaxEval evaluation = MinMaxExplore(board, team, moves);
 	string line = to_string(evaluation.i) + " " + to_string(evaluation.j);
 
 	cout << "the best move is: " << line;
+	cout << endl;
 }
 
 

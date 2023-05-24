@@ -49,7 +49,7 @@ namespace CPU_Opponent
         public void UndoPreviousMove()
         {
             PlayerMove move = MoveHistory.Pop();
-            GameTile tile = Board.GetTile(move.Row, move.Column);
+            GameTile tile = Board.GetTile(move.row, move.column);
             tile.Unmark();
         }
     }

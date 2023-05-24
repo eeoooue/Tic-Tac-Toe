@@ -28,7 +28,7 @@ namespace Game_Library
 
         public void SubmitMove(PlayerMove move)
         {
-            GameTile tile = Board.GetTile(move.Row, move.Column);
+            GameTile tile = Board.GetTile(move.row, move.column);
             tile.Mark();
             MoveHistory.Push(move);
             NotifyMove();

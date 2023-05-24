@@ -29,8 +29,8 @@ namespace Game_Library
 
         private void CheckForWinner(PlayerMove move)
         {
-            CheckColumn(move.Column);
-            CheckRow(move.Row);
+            CheckColumn(move.column);
+            CheckRow(move.row);
             CheckHorizontals();
         }
 

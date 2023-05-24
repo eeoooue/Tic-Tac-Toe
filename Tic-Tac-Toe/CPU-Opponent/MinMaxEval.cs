@@ -20,6 +20,6 @@ namespace CPU_Opponent
             this.score = score;
         }
 
-        public MinMaxEval(PlayerMove move, int score) : this(move.Row, move.Column, score) { }
+        public MinMaxEval(PlayerMove move, int score) : this(move.row, move.column, score) { }
     }
 }

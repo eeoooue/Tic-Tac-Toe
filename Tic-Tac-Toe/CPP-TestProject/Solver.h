@@ -3,6 +3,7 @@
 #include "MinMaxEval.h"
 
 #include <vector>
+#include <string>
 
 using namespace std;
 
@@ -10,7 +11,7 @@ using namespace std;
 class Solver
 {
 	public:
-		void GetBestMove(vector<vector <char>> board);
+		string GetBestMove(vector<vector <char>> board);
 		MinMaxEval MinMaxExplore(vector<vector <char>> board, char team, int moves);
 
 		MinMaxEval GetDummyEval(int score);

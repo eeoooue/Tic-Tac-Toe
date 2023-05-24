@@ -8,7 +8,7 @@
 
 using namespace std;
 
-void Solver::GetBestMove(vector<vector <char>> board) {
+string Solver::GetBestMove(vector<vector <char>> board) {
 
 	cout << "finding the best move";
 	cout << endl;
@@ -22,12 +22,10 @@ void Solver::GetBestMove(vector<vector <char>> board) {
 	cout << "turn player: " << team;
 	cout << endl;
 
-
 	MinMaxEval evaluation = MinMaxExplore(board, team, moves);
 	string line = to_string(evaluation.i) + " " + to_string(evaluation.j);
 
-	cout << "the best move is: " << line;
-	cout << endl;
+	return line;
 }
 
 
@@ -58,12 +56,8 @@ MinMaxEval Solver::MinMaxExplore(vector<vector <char>> board, char team, int mov
 
 				board[i][j] = turnPlayer;
 				MinMaxEval projection = MinMaxExplore(board, team, moves + 1);
+				MinMaxEval evaluation = BuildEval(i, j, projection.score);
 				board[i][j] = ' ';
-
-				MinMaxEval evaluation;
-				evaluation.i = i;
-				evaluation.j = j;
-				evaluation.score = projection.score;
 
 				if (evaluation.score > bestMove.score) {
 					bestMove = evaluation;

@@ -3,6 +3,8 @@
 
 #include <iostream>
 #include <vector>
+#include <string>
+
 #include "Solver.h"
 
 using namespace std;
@@ -17,10 +19,12 @@ vector<vector <char>> unpackBoard(string line);
 int main()
 {
     vector<vector <char>> board = unpackBoard("XO XXOO  ");
-
     Solver solver;
 
-    solver.GetBestMove(board);
+    string line = solver.GetBestMove(board);
+
+    cout << "the best move is: " << line;
+    cout << endl;
 }
 
 

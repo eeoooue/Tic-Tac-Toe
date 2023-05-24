@@ -4,63 +4,57 @@
 
 #include <vector>
 #include <string>
-#include <iostream>
 
 using namespace std;
 
 string Solver::GetBestMove(vector<vector <char>> board) {
 
-	cout << "finding the best move";
-	cout << endl;
+	const int moves = judge.CountMoves(board);
+	const char team = GetTurnPlayer(moves);
+	const MinMaxEval evaluation = MinMaxExplore(board, team, moves);
 
-	Judge judge;
-	int moves = judge.CountMoves(board);
-	cout << "turns so far: " << moves;
-	cout << endl;
-
-	char team = GetTurnPlayer(moves);
-	cout << "turn player: " << team;
-	cout << endl;
-
-	MinMaxEval evaluation = MinMaxExplore(board, team, moves);
-	string line = to_string(evaluation.i) + " " + to_string(evaluation.j);
-
-	return line;
+	return UnpackEvaluation(evaluation);
 }
 
+char Solver::GetTurnPlayer(int moves) {
 
-MinMaxEval Solver::MinMaxExplore(vector<vector <char>> board, char team, int moves) {
+	if (moves % 2 == 0) {
+		return 'X';
+	}
+	return 'O';
+}
 
-	char turnPlayer = GetTurnPlayer(moves);
+MinMaxEval Solver::MinMaxExplore(vector<vector <char>> board, const char team, const int moves) {
+
+	const char turnPlayer = GetTurnPlayer(moves);
 
 	if (moves > 4) {
 
-		Judge judge;
 		if (judge.FindsWinner(board)) {
 
 			if (turnPlayer == team) {
-				return GetDummyEval(moves - 255);
+				return MinMaxEval{ 0, 0, moves - 255 };
 			}
 			else {
-				return GetDummyEval(255 - moves);
+				return MinMaxEval{ 0, 0, 255 - moves };
 			}
+		}
+
+		if (moves == 9) {
+			return MinMaxEval{ 0, 0, 0 };
 		}
 	}
 
-	if (moves == 9) {
-		return GetDummyEval(0);
-	}
-
-	MinMaxEval bestMove = GetDummyEval(-255);
-	MinMaxEval worstMove = GetDummyEval(255);
+	MinMaxEval bestMove = { 0, 0, -255 };
+	MinMaxEval worstMove = { 0, 0, 255 };
 
 	for (int i = 0; i < 3; i++) {
 		for (int j = 0; j < 3; j++) {
 			if (board[i][j] == ' ') {
 
 				board[i][j] = turnPlayer;
-				MinMaxEval projection = MinMaxExplore(board, team, moves + 1);
-				MinMaxEval evaluation = BuildEval(i, j, projection.score);
+				const MinMaxEval projection = MinMaxExplore(board, team, moves + 1);
+				const MinMaxEval evaluation = { i, j, projection.score };
 				board[i][j] = ' ';
 
 				if (evaluation.score > bestMove.score) {
@@ -76,34 +70,15 @@ MinMaxEval Solver::MinMaxExplore(vector<vector <char>> board, char team, int mov
 
 	if (turnPlayer == team) {
 		return bestMove;
-	} else {
+	}
+	else {
 		return worstMove;
 	}
 }
 
+string Solver::UnpackEvaluation(const MinMaxEval evaluation) {
 
-
-MinMaxEval Solver::BuildEval(int i, int j, int score) {
-
-	MinMaxEval evaluation;
-	evaluation.i = i;
-	evaluation.j = j;
-	evaluation.score = score;
-
-	return evaluation;
+	const string line = to_string(evaluation.i) + " " + to_string(evaluation.j);
+	return line;
 }
 
-
-MinMaxEval Solver::GetDummyEval(int score) {
-
-	return BuildEval(0, 0, score);
-}
-
-
-char Solver::GetTurnPlayer(int moves) {
-
-	if (moves % 2 == 0) {
-		return 'X';
-	}
-	return 'O';
-}

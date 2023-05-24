@@ -31,7 +31,7 @@ namespace WPF_App
             InitializeComponent();
             KeyDown += new KeyEventHandler(KeyDownListener);
             KeyUp += new KeyEventHandler(KeyUpListener);
-            _myGame = new GameAgainstCPU();
+            _myGame = new GameAgainstOpponent(new CPUOpponent('O'));
             CreateButtons();
         }
 
@@ -61,7 +61,7 @@ namespace WPF_App
         private void StartNewGame()
         {
             GameBoard.Children.Clear();
-            _myGame = new GameAgainstCPU();
+            _myGame = new GameAgainstOpponent(new CPUOpponent('O'));
             CreateButtons();
         }
 

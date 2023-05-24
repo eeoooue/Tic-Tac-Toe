@@ -7,27 +7,21 @@ using System.Threading.Tasks;
 
 namespace CPU_Opponent
 {
-    public class CPUOpponent
+    public class CPUOpponent : Opponent
     {
-        public char CPUTeam { get; private set; }
-
-        private readonly TicTacToeGame _game;
         private PlayerMove _nextMove;
 
-        public CPUOpponent(TicTacToeGame game, char team)
+        public CPUOpponent(char team) : base(team)
         {
-            CPUTeam = team;
-            _game = game;
-            _nextMove = new PlayerMove(0, 0, CPUTeam);
+            _nextMove = new PlayerMove(0, 0, Team);
         }
 
-        public void MakeMove()
+        public override PlayerMove MakeMove(TicTacToeGame game)
         {
-            CPUTeam = _game.CurrentPlayer;
-            SimulationGame simulation = new SimulationGame(_game);
+            SimulationGame simulation = new SimulationGame(game);
             ExploreMinMax(simulation, 0);
 
-            _game.SubmitMove(_nextMove);
+            return _nextMove;
         }
 
         private int ExploreMinMax(SimulationGame simulation, int depth)
@@ -36,7 +30,7 @@ namespace CPU_Opponent
 
             if (simulation.WinnerExists)
             {
-                if (currentPlayer == CPUTeam)
+                if (currentPlayer == Team)
                 {
                     return depth - 255;
                 }
@@ -74,7 +68,7 @@ namespace CPU_Opponent
                 _nextMove = bestMove;
             }
 
-            return (currentPlayer == CPUTeam) ? bestMove.Score : worstMove.Score;
+            return (currentPlayer == Team) ? bestMove.Score : worstMove.Score;
         }
     }
 }

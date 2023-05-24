@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CPU-Char-Matrix\CPU-Char-Matrix.csproj" />
     <ProjectReference Include="..\CPU-Opponent\CPU-Opponent.csproj" />
     <ProjectReference Include="..\Game-Library\Game-Library.csproj" />
   </ItemGroup>

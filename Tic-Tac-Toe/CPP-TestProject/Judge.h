@@ -6,12 +6,13 @@ using namespace std;
 class Judge
 {
 
-public:
+private:
+	bool IsWinningRow(const vector<vector <char>> board, const int i);
+	bool IsWinningColumn(const vector<vector <char>> board, const int j);
+	bool HasWinningDiagonal(const vector<vector <char>> board);
 
-	int CountMoves(vector<vector <char>> board);
-	bool FindsWinner(vector<vector <char>> board);
-	bool IsWinningRow(vector<vector <char>> board, int i);
-	bool IsWinningColumn(vector<vector <char>> board, int j);
-	bool HasWinningDiagonal(vector<vector <char>> board);
+public:
+	int CountMoves(const vector<vector <char>> board);
+	bool FindsWinner(const vector<vector <char>> board);
 };
 

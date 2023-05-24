@@ -16,7 +16,7 @@ string Solver::GetBestMove(vector<vector <char>> board) {
 	return UnpackEvaluation(evaluation);
 }
 
-char Solver::GetTurnPlayer(int moves) {
+char Solver::GetTurnPlayer(const int moves) {
 
 	if (moves % 2 == 0) {
 		return 'X';

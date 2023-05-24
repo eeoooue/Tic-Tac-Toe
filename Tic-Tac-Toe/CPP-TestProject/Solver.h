@@ -14,9 +14,9 @@ class Solver
 	private:
 		Judge judge;
 		
-		char GetTurnPlayer(int moves);
-		MinMaxEval MinMaxExplore(vector<vector <char>> board, char team, int moves);
-		string UnpackEvaluation(MinMaxEval evaluation);
+		char GetTurnPlayer(const int moves);
+		MinMaxEval MinMaxExplore(vector<vector <char>> board, const char team, const int moves);
+		string UnpackEvaluation(const MinMaxEval evaluation);
 
 
 	public:

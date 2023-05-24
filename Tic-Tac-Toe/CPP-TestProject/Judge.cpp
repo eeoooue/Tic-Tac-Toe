@@ -4,7 +4,7 @@
 using namespace std;
 
 
-int Judge::CountMoves(vector<vector <char>> board) {
+int Judge::CountMoves(const vector<vector <char>> board) {
 
     int count = 0;
 
@@ -21,7 +21,7 @@ int Judge::CountMoves(vector<vector <char>> board) {
 }
 
 
-bool Judge::FindsWinner(vector<vector <char>> board) {
+bool Judge::FindsWinner(const vector<vector <char>> board) {
 
     for (int i = 0; i < 3; i++) {
 
@@ -38,7 +38,7 @@ bool Judge::FindsWinner(vector<vector <char>> board) {
 }
 
 
-bool Judge::IsWinningRow(vector<vector <char>> board, int i) {
+bool Judge::IsWinningRow(const vector<vector <char>> board, const int i) {
 
     char team = board[i][0];
 
@@ -56,7 +56,7 @@ bool Judge::IsWinningRow(vector<vector <char>> board, int i) {
 }
 
 
-bool Judge::IsWinningColumn(vector<vector <char>> board, int j) {
+bool Judge::IsWinningColumn(const vector<vector <char>> board, const int j) {
 
     char team = board[0][j];
 
@@ -74,7 +74,7 @@ bool Judge::IsWinningColumn(vector<vector <char>> board, int j) {
 }
 
 
-bool Judge::HasWinningDiagonal(vector<vector <char>> board) {
+bool Judge::HasWinningDiagonal(const vector<vector <char>> board) {
 
     char team = board[1][1];
 

@@ -2,8 +2,10 @@
 
 namespace CPU_Char_Matrix
 {
-    internal class CharArraySolver
+    internal class Solver
     {
+        private MatrixJudge _judge = new MatrixJudge();
+
         public PlayerMove GetBestMove(char[,] gameState)
         {
             char team = GetTurnPlayer(gameState);
@@ -16,9 +18,9 @@ namespace CPU_Char_Matrix
         private MinMaxEval ExploreMinMax(char[,] givenGameState, char team)
         {
             char turnPlayer = GetTurnPlayer(givenGameState);
-            int moveCount = CountMoves(givenGameState);
+            int moveCount = _judge.CountMoves(givenGameState);
 
-            if (ContainsWinner(givenGameState))
+            if (_judge.ContainsWinner(givenGameState))
             {
                 int score = (turnPlayer == team) ? (moveCount - 255) : (255 - moveCount);
                 return new MinMaxEval(0, 0, score);
@@ -62,7 +64,11 @@ namespace CPU_Char_Matrix
 
         private char GetTurnPlayer(char[,] gameState)
         {
-            int moveCount = CountMoves(gameState);
+            return GetTurnPlayer(_judge.CountMoves(gameState));
+        }
+
+        private char GetTurnPlayer(int moveCount)
+        {
             return (moveCount % 2 == 0) ? 'X' : 'O';
         }
 
@@ -78,81 +84,6 @@ namespace CPU_Char_Matrix
             }
 
             return copy;
-        }
-
-        private int CountMoves(char[,] game)
-        {
-            int count = 0;
-            foreach (char c in game)
-            {
-                if (c != ' ')
-                {
-                    count++;
-                }
-            }
-
-            return count;
-        }
-
-        private bool ContainsWinner(char[,] game)
-        {
-            for (int i = 0; i < 3; i++)
-            {
-                if (IsWinningRow(game, i) || IsWinningColumn(game, i))
-                {
-                    return true;
-                }
-            }
-
-            if (HasWinningDiagonal(game))
-            {
-                return true;
-            }
-
-            return false;
-        }
-
-        private bool IsWinningRow(char[,] game, int i)
-        {
-            char team = game[i, 0];
-
-            if (team == ' ')
-            {
-                return false;
-            }
-
-            return (game[i, 1] == team && game[i, 2] == team);
-        }
-
-        private bool IsWinningColumn(char[,] game, int j)
-        {
-            char team = game[0, j];
-
-            if (team == ' ')
-            {
-                return false;
-            }
-
-            return (game[1, j] == team && game[2, j] == team);
-        }
-
-        private bool HasWinningDiagonal(char[,] game)
-        {
-            char team = game[1, 1];
-
-            if (team == ' ')
-            {
-                return false;
-            }
-            if (game[0, 0] == team && game[2, 2] == team)
-            {
-                return true;
-            }
-            else if (game[0, 2] == team && game[2, 0] == team)
-            {
-                return true;
-            }
-            return false;
         }
     }
 }

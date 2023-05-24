@@ -9,8 +9,7 @@ namespace CPU_Char_Matrix
 {
     public class CharArrayOpponent : Opponent
     {
-
-        private CharArraySolver _solver = new CharArraySolver();
+        private Solver _solver = new Solver();
 
         public CharArrayOpponent(char team) : base(team) { }
 

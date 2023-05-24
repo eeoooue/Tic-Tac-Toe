@@ -8,7 +8,7 @@ namespace Win_Forms_App
     {
         public List<ButtonTile> Buttons { get; set; }
 
-        private TicTacToeGame _myGame = new GameAgainstCPU();
+        private TicTacToeGame _myGame = new GameAgainstOpponent(new CPUOpponent('O'));
 
         private HashSet<Keys> _pressed = new HashSet<Keys>();
         
@@ -22,7 +22,7 @@ namespace Win_Forms_App
 
         private void StartNewGame()
         {
-            _myGame = new GameAgainstCPU();
+            _myGame = new GameAgainstOpponent(new CPUOpponent('O'));
             BuildButtons();
             UpdateAll();
         }

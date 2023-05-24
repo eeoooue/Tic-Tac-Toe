@@ -13,7 +13,7 @@ namespace MAUI_App
         public MainPage()
         {
             InitializeComponent();
-            _myGame = new GameAgainstCPU();
+            _myGame = new GameAgainstOpponent(new CPUOpponent('O'));
             CreateButtons();
         }
 

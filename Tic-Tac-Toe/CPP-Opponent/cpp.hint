@@ -1,0 +1,2 @@
+#define CPPOPPONENT_API __declspec(dllexport)
+#define CPPOPPONENT_API __declspec(dllimport)

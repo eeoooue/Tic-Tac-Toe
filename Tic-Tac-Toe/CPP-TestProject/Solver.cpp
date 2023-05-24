@@ -32,14 +32,18 @@ string Solver::GetBestMove(vector<vector <char>> board) {
 MinMaxEval Solver::MinMaxExplore(vector<vector <char>> board, char team, int moves) {
 
 	char turnPlayer = GetTurnPlayer(moves);
-	Judge judge;
 
-	if (judge.FindsWinner(board)) {
+	if (moves > 4) {
 
-		if (turnPlayer == team) {
-			return GetDummyEval(moves - 255);
-		} else {
-			return GetDummyEval(255 - moves);
+		Judge judge;
+		if (judge.FindsWinner(board)) {
+
+			if (turnPlayer == team) {
+				return GetDummyEval(moves - 255);
+			}
+			else {
+				return GetDummyEval(255 - moves);
+			}
 		}
 	}
 

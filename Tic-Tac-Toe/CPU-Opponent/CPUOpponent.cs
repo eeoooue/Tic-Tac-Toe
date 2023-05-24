@@ -44,31 +44,31 @@ namespace CPU_Opponent
                 return 0;
             }
 
-            EvaluatedMove bestMove = new EvaluatedMove(0, 0, currentPlayer, int.MinValue);
-            EvaluatedMove worstMove = new EvaluatedMove(0, 0, currentPlayer, int.MaxValue);
+            MinMaxEval bestMove = new MinMaxEval(0, 0, int.MinValue);
+            MinMaxEval worstMove = new MinMaxEval(0, 0, int.MaxValue);
 
             foreach (PlayerMove possibleMove in simulation.GetPossibleMoves())
             {
                 simulation.SubmitMove(possibleMove);
                 int score = ExploreMinMax(simulation, depth + 1);
 
-                if (score > bestMove.Score)
+                if (score > bestMove.score)
                 {
-                    bestMove = new EvaluatedMove(possibleMove, score);
+                    bestMove = new MinMaxEval(possibleMove, score);
                 }
-                if (score < worstMove.Score)
+                if (score < worstMove.score)
                 {
-                    worstMove = new EvaluatedMove(possibleMove, score);
+                    worstMove = new MinMaxEval(possibleMove, score);
                 }
                 simulation.UndoPreviousMove();
             }
 
             if (depth == 0)
             {
-                _nextMove = bestMove;
+                _nextMove = new PlayerMove(bestMove.i, bestMove.j, Team);
             }
 
-            return (currentPlayer == Team) ? bestMove.Score : worstMove.Score;
+            return (currentPlayer == Team) ? bestMove.score : worstMove.score;
         }
     }
 }

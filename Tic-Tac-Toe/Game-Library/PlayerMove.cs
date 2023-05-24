@@ -6,17 +6,16 @@ using System.Threading.Tasks;
 
 namespace Game_Library
 {
-    public class PlayerMove
+    public readonly struct PlayerMove
     {
-        public int Row { get; private set; }
-        public int Column { get; private set; }
-        public char Team { get; private set; }
-
-        public PlayerMove(int i, int j, char team)
+        public readonly int row;
+        public readonly int column;
+        public readonly char team;
+        public PlayerMove(int row, int column, char team)
         {
-            Row = i;
-            Column = j;
-            Team = team;
+            this.row = row;
+            this.column = column;
+            this.team = team;
         }
     }
 }

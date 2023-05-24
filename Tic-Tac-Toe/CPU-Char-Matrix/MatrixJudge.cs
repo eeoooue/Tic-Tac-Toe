@@ -32,12 +32,7 @@ namespace CPU_Char_Matrix
                 }
             }
 
-            if (HasWinningDiagonal(game))
-            {
-                return true;
-            }
-
-            return false;
+            return HasWinningDiagonal(game);
         }
 
         private bool IsWinningRow(char[,] game, int i)
@@ -49,7 +44,7 @@ namespace CPU_Char_Matrix
                 return false;
             }
 
-            return (game[i, 1] == team && game[i, 2] == team);
+            return game[i, 1] == team && game[i, 2] == team;
         }
 
         private bool IsWinningColumn(char[,] game, int j)
@@ -61,7 +56,7 @@ namespace CPU_Char_Matrix
                 return false;
             }
 
-            return (game[1, j] == team && game[2, j] == team);
+            return game[1, j] == team && game[2, j] == team;
         }
 
         private bool HasWinningDiagonal(char[,] game)

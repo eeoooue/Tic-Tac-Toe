@@ -25,19 +25,17 @@ namespace CPP_Wrapper
 
         public override PlayerMove MakeMove(TicTacToeGame game)
         {
-            int boardStateInt = GetBoardstateInt(game.Board);
-
-            int value = GetMoveString(boardStateInt);
+            string boardState = DigitizeBoard(game.Board);
+            int value = GetMoveString(int.Parse(boardState));
             int i = value / 10;
             int j = value % 10;
 
             return new PlayerMove(i, j, Team);
         }
 
-        public int GetBoardstateInt(GameBoard board)
+        public string DigitizeBoard(GameBoard board)
         {
             StringBuilder sb = new StringBuilder();
-
             for (int i = 0; i < 3; i++)
             {
                 for (int j = 0; j < 3; j++)
@@ -48,8 +46,7 @@ namespace CPP_Wrapper
                 }
             }
 
-            string stateString = sb.ToString();
-            return int.Parse(stateString);
+            return sb.ToString();
         }
     }
 }

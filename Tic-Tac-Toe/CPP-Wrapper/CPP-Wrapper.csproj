@@ -8,8 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Game-Library\Game-Library.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="CPPOpponent.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 

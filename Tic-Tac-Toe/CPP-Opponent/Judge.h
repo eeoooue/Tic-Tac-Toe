@@ -13,6 +13,6 @@ private:
 
 public:
 	int CountMoves(const vector<vector <char>> board);
-	bool FindsWinner(const vector<vector <char>> board);
+	bool WinningMove(const vector<vector <char>> board, const int i, const int j);
 };
 

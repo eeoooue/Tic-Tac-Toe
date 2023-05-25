@@ -11,14 +11,16 @@ namespace MAUI_App
     {
         private TicTacToeGame _game;
         private GameTile _tile;
-        private MainPage _page;
 
         private bool Marked { get; set; }
 
-        public ButtonTile(TicTacToeGame game, MainPage page, GameTile tile)
+        private bool GameOver { get { return _game.GameOver; } }
+
+        private bool WinningTile { get { return GameOver && (_tile.Character == _game.Winner); } }
+
+        public ButtonTile(TicTacToeGame game, GameTile tile)
         {
             _game = game;
-            _page = page;
             _tile = tile;
             Text = " ";
             FontSize = 50;
@@ -37,15 +39,10 @@ namespace MAUI_App
                 Mark();
             }
             
-            if (_game.GameOver && !IsWinningTile())
+            if (GameOver && !WinningTile)
             {
-                SetLosingAppearance();
+                ShowLosingAppearance();
             }
-        }
-
-        private bool IsWinningTile()
-        {
-            return (_tile.Character == _game.Winner);
         }
 
         private void Mark()
@@ -65,7 +62,7 @@ namespace MAUI_App
             Marked = true;
         }
 
-        private void SetLosingAppearance()
+        private void ShowLosingAppearance()
         {
             TextColor = Color.FromArgb("#aaaaaa");
             Background = Color.FromArgb("#ffffff");

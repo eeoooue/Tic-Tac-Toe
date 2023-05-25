@@ -37,7 +37,7 @@ namespace Win_Forms_App
                 for(int j=0; j<3; j++)
                 {
                     GameTile boardTile = _myGame.Board.GetTile(i, j);
-                    ButtonTile btn = new(_myGame, boardTile);
+                    ButtonTile btn = new(this, _myGame, boardTile);
                     
                     int x_position = 240 + (115 * j);
                     int y_position = 65 + (115 * i);

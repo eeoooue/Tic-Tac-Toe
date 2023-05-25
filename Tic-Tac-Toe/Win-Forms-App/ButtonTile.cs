@@ -12,10 +12,12 @@ namespace Win_Forms_App
     {
         private TicTacToeGame _game;
         private GameTile _tile;
+        private MainForm _parent;
         private bool Marked { get; set; }
 
-        public ButtonTile(TicTacToeGame myGame, GameTile original)
+        public ButtonTile(MainForm parent, TicTacToeGame myGame, GameTile original)
         {
+            _parent = parent;
             _game = myGame;
             _tile = original;
 
@@ -31,6 +33,7 @@ namespace Win_Forms_App
             if (_tile.Marked && !Marked)
             {
                 Mark();
+                _parent.Update();
             }
         }
 

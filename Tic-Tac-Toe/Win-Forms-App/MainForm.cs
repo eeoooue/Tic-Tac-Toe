@@ -23,7 +23,7 @@ namespace Win_Forms_App
 
         private void StartNewGame()
         {
-            _myGame = new GameAgainstOpponent(new CPPOpponent('O'));
+            _myGame = new GameAgainstOpponent(new CPUOpponent('O'));
             BuildButtons();
         }
 

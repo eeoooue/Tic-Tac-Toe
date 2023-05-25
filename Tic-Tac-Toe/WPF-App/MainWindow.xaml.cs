@@ -52,7 +52,7 @@ namespace WPF_App
             }
         }
 
-        public void RenderEarly()
+        public void Update()
         {
             Dispatcher.Invoke(DispatcherPriority.Render, new Action(() => { }));
         }

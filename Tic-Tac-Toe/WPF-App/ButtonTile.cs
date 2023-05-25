@@ -9,28 +9,32 @@ using System.Windows.Controls;
 using System.Windows.Media.Media3D;
 using System.Windows.Media;
 using System.Windows;
+using System.Xml.Linq;
 
 namespace WPF_App
 {
     internal class ButtonTile : Button, Observer
     {
-        private GameTile _boardTile;
-        private TicTacToeGame _myGame;
+        private GameTile _tile;
+        private TicTacToeGame _game;
         private MainWindow _mainWindow;
 
+        private char Character { get { return _tile.Character; } }
+        private bool GameOver { get { return _game.GameOver; } }
         private bool Marked { get; set; }
+        private bool WinningTile { get { return GameOver && (Character == _game.Winner); } }
 
-        public ButtonTile(TicTacToeGame myGame, MainWindow mainWindow, GameTile original)
+        public ButtonTile(TicTacToeGame game, MainWindow mainWindow, GameTile original)
         {
             Width = 80;
             Height = 80;
             FontSize = 50;
             Foreground = Brushes.White;
 
-            _myGame = myGame;
+            _game = game;
             _mainWindow = mainWindow;
-            _boardTile = original;
-            _myGame.Attach(this);
+            _tile = original;
+            _game.Attach(this);
             Marked = false;
 
             Update();
@@ -38,44 +42,39 @@ namespace WPF_App
 
         protected override void OnClick()
         {
-            _boardTile.Click();
+            _tile.Click();
         }
 
         public void Update()
         {
-            if (_boardTile.Marked && !this.Marked)
+            if (_tile.Marked && !Marked)
             {
-                SetTeamAppearance();
-                _mainWindow.RenderEarly();
+                Mark();
+                _mainWindow.Update();
             }
 
-            if (_myGame.GameOver && !IsWinningTile())
+            if (GameOver && !WinningTile)
             {
-                SetLosingAppearance();
+                ShowLosingAppearance();
             }
         }
 
-        private bool IsWinningTile()
-        {
-            return (_boardTile.Character == _myGame.Winner);
-        }
-
-        private void SetLosingAppearance()
+        private void ShowLosingAppearance()
         {
             Foreground = Brushes.DarkGray;
             Background = Brushes.White;
         }
 
-        private void SetTeamAppearance()
+        private void Mark()
         {
-            Content = _boardTile.Character;
+            Content = Character;
             Background = Brushes.White;
 
-            if (_boardTile.Character == 'X')
+            if (Character == 'X')
             {
                 Background = Brushes.PaleVioletRed;
             }
-            else if (_boardTile.Character == 'O')
+            else if (Character == 'O')
             {
                 Background = Brushes.CornflowerBlue;
             }

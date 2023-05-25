@@ -1,4 +1,5 @@
-﻿using CPU_Opponent;
+﻿using CPP_Wrapper;
+using CPU_Opponent;
 using Game_Library;
 
 namespace MAUI_App
@@ -26,7 +27,7 @@ namespace MAUI_App
                 for (int j = 0; j < 3; j++)
                 {
                     GameTile tile = _myGame.Board.GetTile(i, j);
-                    ButtonTile button = new(_myGame, this, tile);
+                    ButtonTile button = new(_myGame, tile);
                     GameBoard.Children.Add(button);
                     Grid.SetRow(button, i);
                     Grid.SetColumn(button, j);

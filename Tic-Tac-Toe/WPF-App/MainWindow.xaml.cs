@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace WPF_App
 {
@@ -49,6 +50,11 @@ namespace WPF_App
                     Grid.SetColumn(tile, boardTile.Column);
                 }
             }
+        }
+
+        public void Update()
+        {
+            Dispatcher.Invoke(DispatcherPriority.Render, new Action(() => { }));
         }
 
         private void StartNewGame()

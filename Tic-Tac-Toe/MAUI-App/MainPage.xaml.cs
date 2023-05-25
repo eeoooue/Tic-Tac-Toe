@@ -14,7 +14,7 @@ namespace MAUI_App
         public MainPage()
         {
             InitializeComponent();
-            _myGame = new GameAgainstOpponent(new CPPOpponent('O'));
+            _myGame = new GameAgainstOpponent(new CPUOpponent('O'));
             CreateButtons();
         }
 
@@ -27,7 +27,7 @@ namespace MAUI_App
                 for (int j = 0; j < 3; j++)
                 {
                     GameTile tile = _myGame.Board.GetTile(i, j);
-                    ButtonTile button = new(_myGame, this, tile);
+                    ButtonTile button = new(_myGame, tile);
                     GameBoard.Children.Add(button);
                     Grid.SetRow(button, i);
                     Grid.SetColumn(button, j);

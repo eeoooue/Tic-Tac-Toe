@@ -35,6 +35,8 @@ namespace Game_Library
                 GameTile tile = Board.GetTile(move.row, move.column);
                 tile.Mark();
                 MoveHistory.Push(move);
+                Notify();
+                NotifyMove();
             }
         }
 

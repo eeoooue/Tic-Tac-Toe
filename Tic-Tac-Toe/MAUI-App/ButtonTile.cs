@@ -13,6 +13,8 @@ namespace MAUI_App
         private GameTile _tile;
         private MainPage _page;
 
+        private bool Marked { get; set; }
+
         public ButtonTile(TicTacToeGame game, MainPage page, GameTile tile)
         {
             _game = game;
@@ -23,13 +25,18 @@ namespace MAUI_App
             Clicked += ClickAction;
             TextColor = Color.FromArgb("#ffffff");
             _game.Attach(this);
+            Marked = false;
 
             Update();
         }
 
         public void Update()
         {
-            SetTeamAppearance();
+            if (_tile.Marked && !Marked)
+            {
+                Mark();
+            }
+            
             if (_game.GameOver && !IsWinningTile())
             {
                 SetLosingAppearance();
@@ -41,7 +48,7 @@ namespace MAUI_App
             return (_tile.Character == _game.Winner);
         }
 
-        private void SetTeamAppearance()
+        private void Mark()
         {
             Text = _tile.Character.ToString();
             Background = Color.FromArgb("#ffffff");
@@ -54,6 +61,8 @@ namespace MAUI_App
             {
                 Background = Color.FromArgb("#6495ED");
             }
+
+            Marked = true;
         }
 
         private void SetLosingAppearance()

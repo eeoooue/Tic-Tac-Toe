@@ -34,14 +34,5 @@ namespace MAUI_App
                 }
             }
         }
-
-        public void UpdateButtons()
-        {
-            foreach(ButtonTile button in _buttonTiles)
-            {
-                button.UpdateAppearance();
-            }
-        }
-
     }
 }

@@ -28,10 +28,12 @@ namespace Game_Library
 
         public void SubmitMove(PlayerMove move)
         {
-            GameTile tile = Board.GetTile(move.row, move.column);
-            tile.Mark();
-            MoveHistory.Push(move);
-            NotifyMove();
+            if (move.team == CurrentPlayer)
+            {
+                GameTile tile = Board.GetTile(move.row, move.column);
+                tile.Mark();
+                MoveHistory.Push(move);
+            }
         }
 
         public virtual void NotifyMove() { }

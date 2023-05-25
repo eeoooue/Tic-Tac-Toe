@@ -51,14 +51,6 @@ namespace WPF_App
             }
         }
 
-        public void UpdateAllTiles()
-        {
-            foreach (ButtonTile tile in GameBoard.Children)
-            {
-                tile.Update();
-            }
-        }
-
         private void StartNewGame()
         {
             GameBoard.Children.Clear();

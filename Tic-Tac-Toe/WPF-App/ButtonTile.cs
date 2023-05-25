@@ -11,7 +11,7 @@ using System.Windows.Media;
 
 namespace WPF_App
 {
-    internal class ButtonTile : Button
+    internal class ButtonTile : Button, Observer
     {
         private GameTile _boardTile;
         private TicTacToeGame _myGame;
@@ -27,13 +27,14 @@ namespace WPF_App
             _myGame = myGame;
             _mainWindow = mainWindow;
             _boardTile = original;
+            _myGame.Attach(this);
+
             Update();
         }
 
         protected override void OnClick()
         {
             _boardTile.Click();
-            _mainWindow.UpdateAllTiles();
         }
 
         public void Update()

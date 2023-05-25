@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace MAUI_App
 {
-    internal class ButtonTile : Button
+    internal class ButtonTile : Button, Observer
     {
-
         private TicTacToeGame _game;
         private GameTile _tile;
         private MainPage _page;
@@ -23,9 +22,12 @@ namespace MAUI_App
             FontSize = 50;
             Clicked += ClickAction;
             TextColor = Color.FromArgb("#ffffff");
+            _game.Attach(this);
+
+            Update();
         }
 
-        public void UpdateAppearance()
+        public void Update()
         {
             SetTeamAppearance();
             if (_game.GameOver && !IsWinningTile())
@@ -63,7 +65,6 @@ namespace MAUI_App
         private void ClickAction(object sender, EventArgs e)
         {
             _tile.Click();
-            _page.UpdateButtons();
         }
     }
 }

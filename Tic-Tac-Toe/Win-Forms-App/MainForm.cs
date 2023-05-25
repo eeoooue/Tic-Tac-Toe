@@ -24,7 +24,6 @@ namespace Win_Forms_App
         {
             _myGame = new GameAgainstOpponent(new CPUOpponent('O'));
             BuildButtons();
-            UpdateAll();
         }
 
         private void BuildButtons()
@@ -37,7 +36,7 @@ namespace Win_Forms_App
                 for(int j=0; j<3; j++)
                 {
                     GameTile boardTile = _myGame.Board.GetTile(i, j);
-                    ButtonTile btn = new(_myGame, this, boardTile);
+                    ButtonTile btn = new(_myGame, boardTile);
                     
                     int x_position = 240 + (115 * j);
                     int y_position = 65 + (115 * i);
@@ -45,14 +44,6 @@ namespace Win_Forms_App
                     Buttons.Add(btn);
                     Controls.Add(btn);
                 }
-            }
-        }
-
-        public void UpdateAll()
-        {
-            foreach(ButtonTile btn in Buttons)
-            {
-                btn.UpdateMe();
             }
         }
 

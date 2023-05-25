@@ -33,24 +33,6 @@ int Judge::CountMoves(const vector<vector <char>> board) {
     return count;
 }
 
-
-bool Judge::FindsWinner(const vector<vector <char>> board) {
-
-    for (int i = 0; i < 3; i++) {
-
-        if (IsWinningRow(board, i)) {
-            return true;
-        }
-
-        if (IsWinningColumn(board, i)) {
-            return true;
-        }
-    }
-
-    return HasWinningDiagonal(board);
-}
-
-
 bool Judge::IsWinningRow(const vector<vector <char>> board, const int i) {
 
     char team = board[i][0];

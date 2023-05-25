@@ -4,6 +4,19 @@
 
 using namespace std;
 
+bool Judge::WinningMove(const vector<vector <char>> board, const int i, const int j) {
+
+    if (IsWinningRow(board, i)) {
+        return true;
+    }
+
+    if (IsWinningColumn(board, j)) {
+        return true;
+    }
+
+    return HasWinningDiagonal(board);
+}
+
 int Judge::CountMoves(const vector<vector <char>> board) {
 
     int count = 0;

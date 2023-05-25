@@ -18,7 +18,7 @@ string Solver::GetBestMove(const string line) {
 		return "1 1";
 	}
 
-	const MinMaxEval evaluation = MinMaxExplore(board, team, moves);
+	const MinMaxEval evaluation = MinMaxExplore(board, team, moves, 0, 0);
 
 	return UnpackEvaluation(evaluation);
 }
@@ -31,13 +31,13 @@ char Solver::GetTurnPlayer(const int moves) {
 	return 'O';
 }
 
-MinMaxEval Solver::MinMaxExplore(vector<vector <char>> board, const char team, const int moves) {
+MinMaxEval Solver::MinMaxExplore(vector<vector <char>> board, const char team, const int moves, const int prevRow, const int prevCol) {
 
 	const char turnPlayer = GetTurnPlayer(moves);
 
 	if (moves > 4) {
 
-		if (judge.FindsWinner(board)) {
+		if (judge.WinningMove(board, prevRow, prevCol)) {
 
 			if (turnPlayer == team) {
 				return MinMaxEval{ 0, 0, moves - 255 };
@@ -60,7 +60,7 @@ MinMaxEval Solver::MinMaxExplore(vector<vector <char>> board, const char team, c
 			if (board[i][j] == ' ') {
 
 				board[i][j] = turnPlayer;
-				const MinMaxEval projection = MinMaxExplore(board, team, moves + 1);
+				const MinMaxEval projection = MinMaxExplore(board, team, moves + 1, i, j);
 				const MinMaxEval evaluation = { i, j, projection.score };
 				board[i][j] = ' ';
 

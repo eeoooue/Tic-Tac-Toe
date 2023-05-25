@@ -9,20 +9,7 @@
             Padding="30,0"
             VerticalOptions="Center">
 
-            <Label
-                Text="Tic-Tac-Toe"
-                SemanticProperties.HeadingLevel="Level1"
-                FontSize="32"
-                HorizontalOptions="Center" />
-
-            <!--<Label
-                Text="Welcome to .NET Multi-platform App UI"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App UI"
-                FontSize="18"
-                HorizontalOptions="Center" />-->
-
-            <Grid x:Name="GameBoard" HorizontalOptions="Center">
+            <Grid x:Name="GameBoard" HorizontalOptions="Center" ColumnSpacing="10" RowSpacing="10">
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="100"/>

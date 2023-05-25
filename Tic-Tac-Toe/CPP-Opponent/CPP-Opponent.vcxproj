@@ -165,7 +165,6 @@
     <ClCompile Include="CPP-Opponent.cpp" />
     <ClCompile Include="dllmain.cpp" />
     <ClCompile Include="Judge.cpp" />
-    <ClCompile Include="MinMaxEval.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

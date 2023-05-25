@@ -24,43 +24,11 @@ extern "C" CPPOPPONENT_API int GetMoveString(int boardstate)
 
 int ConvertMove(string bestMove) {
 
-    if (bestMove == "0 0") {
-        return 0;
-    }
+    string build;
+    build += bestMove[0];
+    build += bestMove[2];
 
-    if (bestMove == "0 1") {
-        return 1;
-    }
-
-    if (bestMove == "0 2") {
-        return 2;
-    }
-
-    if (bestMove == "1 0") {
-        return 10;
-    }
-
-    if (bestMove == "1 1") {
-        return 11;
-    }
-
-    if (bestMove == "1 2") {
-        return 12;
-    }
-
-    if (bestMove == "2 0") {
-        return 20;
-    }
-
-    if (bestMove == "2 1") {
-        return 21;
-    }
-
-    if (bestMove == "2 2") {
-        return 22;
-    }
-
-    return 0;
+    return stoi(build);
 }
 
 string ParseStateInt(int boardstate) {

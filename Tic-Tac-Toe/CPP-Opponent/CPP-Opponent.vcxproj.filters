@@ -53,8 +53,5 @@
     <ClCompile Include="Solver.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MinMaxEval.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
 </Project>

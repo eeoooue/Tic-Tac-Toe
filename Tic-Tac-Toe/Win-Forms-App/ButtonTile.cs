@@ -10,8 +10,9 @@ namespace Win_Forms_App
 {
     public class ButtonTile : Button, Observer
     {
-        TicTacToeGame _game;
-        GameTile _tile;
+        private TicTacToeGame _game;
+        private GameTile _tile;
+        private bool Marked { get; set; }
 
         public ButtonTile(TicTacToeGame myGame, GameTile original)
         {
@@ -27,7 +28,16 @@ namespace Win_Forms_App
 
         public new void Update()
         {
+            if (_tile.Marked && !Marked)
+            {
+                Mark();
+            }
+        }
+
+        private void Mark()
+        {
             Text = _tile.Character.ToString();
+            Marked = true;
         }
 
         protected override void OnClick(EventArgs e)

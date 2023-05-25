@@ -1,4 +1,5 @@
-﻿using CPU_Opponent;
+﻿using CPP_Wrapper;
+using CPU_Opponent;
 using Game_Library;
 
 namespace MAUI_App
@@ -13,7 +14,7 @@ namespace MAUI_App
         public MainPage()
         {
             InitializeComponent();
-            _myGame = new GameAgainstOpponent(new CPUOpponent('O'));
+            _myGame = new GameAgainstOpponent(new CPPOpponent('O'));
             CreateButtons();
         }
 

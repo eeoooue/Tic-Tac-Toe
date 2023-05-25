@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Media.Media3D;
 using System.Windows.Media;
+using System.Windows;
 
 namespace WPF_App
 {
@@ -16,6 +17,8 @@ namespace WPF_App
         private GameTile _boardTile;
         private TicTacToeGame _myGame;
         private MainWindow _mainWindow;
+
+        private bool Marked { get; set; }
 
         public ButtonTile(TicTacToeGame myGame, MainWindow mainWindow, GameTile original)
         {
@@ -28,6 +31,7 @@ namespace WPF_App
             _mainWindow = mainWindow;
             _boardTile = original;
             _myGame.Attach(this);
+            Marked = false;
 
             Update();
         }
@@ -39,7 +43,12 @@ namespace WPF_App
 
         public void Update()
         {
-            SetTeamAppearance();
+            if (_boardTile.Marked && !this.Marked)
+            {
+                SetTeamAppearance();
+                _mainWindow.RenderEarly();
+            }
+
             if (_myGame.GameOver && !IsWinningTile())
             {
                 SetLosingAppearance();
@@ -70,6 +79,8 @@ namespace WPF_App
             {
                 Background = Brushes.CornflowerBlue;
             }
+
+            Marked = true;
         }
     }
 }

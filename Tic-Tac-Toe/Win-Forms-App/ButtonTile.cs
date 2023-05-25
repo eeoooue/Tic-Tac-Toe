@@ -8,37 +8,32 @@ using System.Windows.Forms;
 
 namespace Win_Forms_App
 {
-    public class ButtonTile : Button
+    public class ButtonTile : Button, Observer
     {
-        public int Row { get { return _tile.Row; } }
-        public int Column { get { return _tile.Column; } }
-
         TicTacToeGame _game;
         GameTile _tile;
 
-        MainForm _parent;
-
-        public ButtonTile(TicTacToeGame myGame, MainForm parentForm, GameTile original)
+        public ButtonTile(TicTacToeGame myGame, GameTile original)
         {
             _game = myGame;
             _tile = original;
-            _parent = parentForm;
 
             Font = new Font("Microsoft Sans Serif", 36F);
             Size = new Size(100, 100);
+            _game.Attach(this);
+
+            Update();
         }
 
-        public void UpdateMe()
+        public new void Update()
         {
             Text = _tile.Character.ToString();
-            Update();
         }
 
         protected override void OnClick(EventArgs e)
         {
             base.OnClick(e);
             _tile.Click();
-            _parent.UpdateAll();
         }
     }
 }

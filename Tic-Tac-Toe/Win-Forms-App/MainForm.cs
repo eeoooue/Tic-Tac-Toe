@@ -1,3 +1,4 @@
+using CPP_Wrapper;
 using CPU_Opponent;
 using Game_Library;
 using System.Windows.Forms;
@@ -22,7 +23,7 @@ namespace Win_Forms_App
 
         private void StartNewGame()
         {
-            _myGame = new GameAgainstOpponent(new CPUOpponent('O'));
+            _myGame = new GameAgainstOpponent(new CPPOpponent('O'));
             BuildButtons();
         }
 
